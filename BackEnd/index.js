@@ -2,46 +2,82 @@ const express = require("express")
 const app = express()
 const Usuario = require("./models/Usuario")
 const bcrypt = require("bcryptjs")
-const session = require("express-session")
 const cors = require("cors")
+const jwt = require("jsonwebtoken")
+const chaveSecreta = "chaveSegura"
 
 app.use(cors())
-app.use(session({
-
-    secret: "!@#$qwer1234",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false }
-}))
-
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-app.post("/registrar", async (req, res) =>{
+app.post("/auth/registrar", async (req, res) =>{
 
     const { nome, email, senha, telefone, cep, endereco, cidade } = req.body
 
-    const senhaHash = await bcrypt.hash(senha, 10)
+    const emailExistente = await Usuario.findOne({ where: { email }})
 
-    try{
+    if(!emailExistente){
 
-        await Usuario.create({
+        try{
 
-            nome,
-            email,
-            senha: senhaHash,
-            telefone,
-            cep,
-            cidade,
-            endereco
-        })
+            const senhaHash = await bcrypt.hash(senha, 10)
 
-        res.redirect("/")
+            await Usuario.create({
+    
+                nome,
+                email,
+                senha: senhaHash,
+                telefone,
+                cep,
+                cidade,
+                endereco
+            })
+        }catch(error){
+    
+            res.send("Erro ao registrar usuário " + error)
+        }
+    } else{ 
 
-        console.log(req.body)
-    }catch(error){
+        console.log("Email já existente")
+    }    
+})
 
-        res.send("Erro ao registrar usuário " + error)
+app.post("/auth/login", async (req, res) =>{
+
+    const { email, senha } = req.body
+
+    const usuarioExiste = await Usuario.findOne({ where: { email }})
+
+    if(usuarioExiste){
+
+        const senhaCompativel = await bcrypt.compare(senha, usuarioExiste.senha)
+      
+        if(senhaCompativel){
+
+            console.log("Login feito com sucesso")
+
+            const token = jwt.sign(
+                { id: usuarioExiste.id, nome: usuarioExiste.nome},
+                chaveSecreta,
+                { expiresIn: "1h" }
+            )
+
+            return res.status(200).json({
+
+                message: "Login bem-sucedido!",
+                user: {
+                    id: usuarioExiste.id,
+                    nome: usuarioExiste.nome
+                },
+                token
+            })
+        } else{
+
+            console.log("Senha incorreta")
+        }
+    } else{
+
+        console.log("Usuario não existe")
     }
 })
 
