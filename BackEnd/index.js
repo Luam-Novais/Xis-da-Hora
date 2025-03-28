@@ -10,13 +10,35 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+const authMiddleware = (req, res, next) => {
+
+    const authHeader = req.headers.authorization
+
+    if(!authHeader){
+
+        return res.status(401).json({ message: "Token não fornecido" })
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    try{
+
+        const decoded = jwt.verify(token, chaveSecreta)
+        req.user = decoded
+        next()
+    }catch(error){
+
+        return res.status(401).json({ message: "Token inválido ou expirado" })
+    }
+}
+
 app.post("/auth/registrar", async (req, res) =>{
 
     const { nome, email, senha, telefone, cep, endereco, cidade } = req.body
 
-    const emailExistente = await Usuario.findOne({ where: { email }})
+    const usuarioExiste = await Usuario.findOne({ where: { email }})
 
-    if(!emailExistente){
+    if(!usuarioExiste){
 
         try{
 
@@ -31,6 +53,24 @@ app.post("/auth/registrar", async (req, res) =>{
                 cep,
                 cidade,
                 endereco
+            })
+
+            const token = jwt.sign(
+
+                { id: usuarioExiste.id, nome: usuarioExiste.nome },
+                chaveSecreta,
+                { expiresIn: "1h"}
+            )
+
+            return res.status(200).json({
+
+                message: "Registro feito com sucesso",
+                user: {
+
+                    id: usuarioExiste.id,
+                    nome: usuarioExiste.nome
+                },
+                token
             })
         }catch(error){
     
