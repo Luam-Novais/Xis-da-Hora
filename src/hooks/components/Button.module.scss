@@ -1,0 +1,14 @@
+.button{
+    background: red;
+    justify-self: start;
+    padding: 10px 50px;
+    border: none;
+    height: 50px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all .4s ease-in;
+    &:hover{
+        transform: scale(1.03);
+    }
+}
