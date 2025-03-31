@@ -1,6 +1,5 @@
 import React from 'react'
-import styles from '../styles/components/FormContainer.m'
-import styled from 'styled-components'
+import styles from '../styles/components/FormContainer.module.scss'
 
 const FormContainer = ({onSubmit, children}) => {
   return (
@@ -11,9 +10,3 @@ const FormContainer = ({onSubmit, children}) => {
 }
 
 export default FormContainer
-
-export const FormStyled = styled.form`
-
-     
-
-`;
