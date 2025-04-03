@@ -1,13 +1,12 @@
-import React from 'react';
-import { UserStorage } from './UserContext';
+import React from 'react'
+import UserStorage from './UserContext'
 
-const globalContext = ({ children }) => {
+const GlobalContext = ({children}) => {
   return (
-    
-        <UserStorage>
-          {children}
-      </UserStorage>
+    <UserStorage>
+      {children}
+    </UserStorage>
   )
-};
+}
 
-export default globalContext;
+export default GlobalContext
