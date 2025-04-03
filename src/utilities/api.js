@@ -1,24 +1,17 @@
 
-export function TOKEN_POST(route, body){
-    return{
-        url: 'http://26.252.150.176:3001' + route,
-        options:{
+export function DATA_POST(route, body){
+    return {
+        url: 'http://26.235.226.168:3001' + route,
+        options: {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json' 
             },
             body: JSON.stringify(body)
         }
     }
 }
-export function USER_GET(route, token){
-    return{
-        url: 'http://26.252.150.176:3001' + route,
-        options:{
-            method: 'GET',
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        }
-    }
+
+export function GET_TOKEN(){
+    
 }
