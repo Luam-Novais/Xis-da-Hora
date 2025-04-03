@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
-import FormContainer from '../components/FormContainer';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import useForm from '../hooks/useForm';
 import Title from '../components/Title';
+import styles from '../styles/pages/CreateAccount.module.scss'
 import { userContext } from '../context/UserContext';
+import Loading from '../components/Loading';
 
 const CreateAccount = () => {
-  const {userCreate} = useContext(userContext)
+  const {userCreate, loading} = useContext(userContext)
   const nome = useForm('nome');
   const telefone = useForm('telefone');
   const email = useForm('email');
@@ -45,24 +46,26 @@ const CreateAccount = () => {
     }
   };
   
+  if(loading){
+    return <Loading/>
+  }
   return (
-    <>
-      <FormContainer onSubmit={handleSubmit}>
-        <img src="/logo.svg" alt="" className="logo full-width" />
-        <Title>Criar Conta</Title>
+    <section>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <img src="/logo.svg" alt="" className={`${styles.logo} full-width`} />
+        <Title >Criar Conta</Title>
         <Input label="Nome" id="nome" name="name" type="text" {...nome} />
         <Input label="Numero" id="telefone" name="telefone" type="text" {...telefone} />
-        <Input label="Email" id="email" name="email" type="email" className="full-width" {...email} />
+        <Input label="Email" id="email" name="email" type="email" className='full-width'{...email} />
         <Input label="Cep" id="cep" name="cep" type="number" {...cep} />
         <Input label="Endereço" id="endereco" name="endereco" type="text" {...endereco} />
-        <Input label="Cidade" id="cidade" name="cidade" type="text" {...cidade} />
-        <Input label="Senha" id="senha" name="senha" type="password" {...senha} />
-        <Input label="Confirmar Senha" id="confirmSenha" name="confirmSenha" type="text" />
+        <Input label="Cidade" id="cidade" name="cidade" type="text"  {...cidade} />
+        <Input label="Senha" id="senha" name="senha" type="password" className='full-width' {...senha} />
+        <Input label="Confirmar Senha" id="confirmSenha" type="password" name="confirmSenha" className='full-width'/>
 
         <Button className="full-width">Cadastrar</Button>
-      </FormContainer>
-      <img className="bgForm" src="/bg-form.jpg" alt="" />
-    </>
+      </form>
+    </section>
   );
 };
 
