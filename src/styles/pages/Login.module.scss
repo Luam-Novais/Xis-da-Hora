@@ -1,0 +1,15 @@
+@use '../variables' as *;
+.form{
+    background-color: $white;
+    border-radius: 10px;
+    box-shadow: -2px 4px 9px $gray;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 20px 40px;
+    font-family: $primary-font;
+    .logo{
+        width: 80px;
+    }
+}
