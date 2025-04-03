@@ -1,0 +1,13 @@
+@use '../variables' as *;
+.container{
+    display: grid;
+    justify-content: center;
+    padding: 20px 60px;
+    min-width: 100%;
+}
+
+@media(max-width:768px){
+    .container{
+        padding-bottom: 100px;
+    }
+}

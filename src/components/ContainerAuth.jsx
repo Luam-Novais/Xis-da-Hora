@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from '../styles/components/ContainerAuth.module.scss'
 
 const ContainerAuth = ({children}) => {
   return (
-    <>{children}</>
+    <main className={styles.container}>{children}</main>
   )
 }
 
