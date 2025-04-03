@@ -1,8 +1,10 @@
 import React from 'react'
+import styles from '../styles/components/Title.module.scss'
 
-const Title = () => {
+const Title = ({children}) => {
+
   return (
-    <div>Title</div>
+    <h1 className={`${styles.title} full-width`}>{children}</h1>
   )
 }
 
