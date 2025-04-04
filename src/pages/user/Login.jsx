@@ -1,12 +1,12 @@
 import React, { useContext} from 'react';
-import styles from '../styles/pages/Login.module.scss'
+import styles from '../../styles/pages/user/Login.module.scss'
 import { Link } from 'react-router-dom';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import useForm from '../hooks/useForm';
-import { userContext } from '../context/UserContext';
-import Loading from '../components/Loading'
-import Title from '../components/Title';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import useForm from '../../hooks/useForm';
+import { userContext } from '../../context/UserContext';
+import Loading from '../../components/Loading'
+import Title from '../../components/Title';
 
 const Login = () => {
   const { userLogin, loading } = useContext(userContext)

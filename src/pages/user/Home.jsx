@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from '../styles/pages/Home.module.scss'
-import Button from '../components/Button'
-import RegisterBurger from './admin/RegisterBurger'
+import styles from '../../styles/pages/user/Home.module.scss'
+import Button from '../../components/Button'
+import RegisterBurger from '../admin/RegisterBurger'
 import { Link } from 'react-router-dom'
 
 const Home = () => {

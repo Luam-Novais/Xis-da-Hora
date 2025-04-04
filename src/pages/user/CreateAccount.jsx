@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import useForm from '../hooks/useForm';
-import Title from '../components/Title';
-import styles from '../styles/pages/CreateAccount.module.scss'
-import { userContext } from '../context/UserContext';
-import Loading from '../components/Loading';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import useForm from '../../hooks/useForm';
+import Title from '../../components/Title';
+import styles from '../../styles/pages/user/CreateAccount.module.scss'
+import { userContext } from '../../context/UserContext';
+import Loading from '../../components/Loading';
 
 const CreateAccount = () => {
   const {userCreate, loading} = useContext(userContext)
