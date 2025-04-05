@@ -42,3 +42,34 @@
         transform: scale(1);
     }
 }
+
+@media($tablet){
+    .hero{
+        width: 100%;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        gap: 10px;
+        padding: 0px;
+        img{
+            width: 400px;
+        }
+        h1{
+            font-size: 3.5rem;
+        }
+        button{
+
+            margin: 0 auto;
+            justify-self: center;
+        }
+    }
+}
+
+// @media(max-width:578px){
+//     .hero{
+//         h1{
+//             font-size: 2rem;
+//         }
+//     }
+// }

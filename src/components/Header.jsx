@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/components/Header.module.scss';
 import { NavLink } from 'react-router-dom';
-import { IoFastFood, IoBagHandle, IoPerson} from "react-icons/io5";
+import { IoHome, IoFastFood, IoBagHandle, IoPerson} from "react-icons/io5";
 import useMedia from '../hooks/useMedia';
 
 const Header = () => {
@@ -9,9 +9,10 @@ const Header = () => {
 
   return (
     <header className={!mobile ? styles.header : styles.headerMobile}>
-      <NavLink to='/'><img className={styles.logo} src="/logo.svg" alt="" /></NavLink>
+      {!mobile && <NavLink to='/' ><img className={styles.logo} src="/logo.svg" alt="logo do xis da hora" /></NavLink>}
       <nav className={styles.navContainer}>
         <ul>
+          {mobile && <li> <NavLink to='/'><i><IoHome/></i></NavLink></li>}
           <li>
             <NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='cardapio'>
               {!mobile ? 'Cardapio' :<i><IoFastFood/></i> }
