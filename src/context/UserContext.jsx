@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export const userContext = createContext();
 const UserStorage = ({ children }) => {
   const [user, setUser] = useState('');
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -18,12 +19,14 @@ const UserStorage = ({ children }) => {
       if (response.ok) {
         window.localStorage.setItem('token', json.token)
         setUser(json.user.nome)
+        setIsAuthorized(true)
         navigate('/');
       }
     } catch (err) {
       alert('Ocorreu um erro!', err);
     } finally {
       setLoading(false);
+      setIsAuthorized(false)
     }
   }
   async function userCreate(data) {
@@ -35,14 +38,15 @@ const UserStorage = ({ children }) => {
 
       if (response.ok) {
         window.localStorage.setItem('token', json.token)
-        setUser(json.user.nome)
-        navigate('/');
+        setUser(json.user.nome) 
+        setIsAuthorized(true)
         navigate('/');
       }
     } catch (err) {
       alert('Ocorreu um erro!', err);
     } finally {
       setLoading(false);
+      setIsAuthorized(false);
     }
   }
   return (
@@ -53,6 +57,7 @@ const UserStorage = ({ children }) => {
         userLogin,
         userCreate,
         loading,
+        isAuthorized
       }}
     >
       {children}

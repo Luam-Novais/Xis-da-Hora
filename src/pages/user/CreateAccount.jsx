@@ -71,4 +71,3 @@ const CreateAccount = () => {
 
 export default CreateAccount;
 
-// https://jsonplaceholder.typicode.com/posts

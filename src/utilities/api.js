@@ -11,6 +11,7 @@ export function DATA_POST(route, body){
         }
     }
 }
+// https://jsonplaceholder.typicode.com/posts
 
 export function GET_TOKEN(){
     
