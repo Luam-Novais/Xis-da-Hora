@@ -1,6 +1,9 @@
 const express = require("express")
 const app = express()
+
 const Usuario = require("./models/Usuario")
+const Hamburguer = require("./models/Hamburguer")
+
 const bcrypt = require("bcryptjs")
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
@@ -38,48 +41,46 @@ app.post("/auth/registrar", async (req, res) =>{
 
     const usuarioExiste = await Usuario.findOne({ where: { email }})
 
-    if(!usuarioExiste){
+    if(usuarioExiste){
 
-        try{
+        return res.status(400).json({ message: "Email ja existente" })
+    }
 
-            const senhaHash = await bcrypt.hash(senha, 10)
+    try{
 
-            await Usuario.create({
+        const senhaHash = await bcrypt.hash(senha, 10)
+
+        const novoUsuario = await Usuario.create({
     
-                nome,
-                email,
-                senha: senhaHash,
-                telefone,
-                cep,
-                cidade,
-                endereco
-            })
+            nome,
+            email,
+            senha: senhaHash,
+            telefone,
+            cep,
+            cidade,
+            endereco
+        })
 
-            const token = jwt.sign(
+        const token = jwt.sign(
 
-                { id: usuarioExiste.id, nome: usuarioExiste.nome },
-                chaveSecreta,
-                { expiresIn: "1h"}
-            )
+            { id: novoUsuario.id, nome: novoUsuario.nome },
+            chaveSecreta,
+            { expiresIn: "1h" }
+        )
 
-            return res.status(200).json({
+        return res.status(200).json({
 
-                message: "Registro feito com sucesso",
-                user: {
+            message: "Registro feito com sucesso",
+            user: {
+                id: novoUsuario.id,
+                nome: novoUsuario.nome
+            },
+            token
+        })
+    } catch(error){
 
-                    id: usuarioExiste.id,
-                    nome: usuarioExiste.nome
-                },
-                token
-            })
-        }catch(error){
-    
-            res.send("Erro ao registrar usuário " + error)
-        }
-    } else{ 
-
-        console.log("Email já existente")
-    }    
+        res.send("Erro ao cadastrar usuario " + error)
+    }
 })
 
 app.post("/auth/login", async (req, res) =>{
@@ -97,7 +98,8 @@ app.post("/auth/login", async (req, res) =>{
             console.log("Login feito com sucesso")
 
             const token = jwt.sign(
-                { id: usuarioExiste.id, nome: usuarioExiste.nome},
+
+                { id: usuarioExiste.id, nome: usuarioExiste.nome },
                 chaveSecreta,
                 { expiresIn: "1h" }
             )
@@ -117,7 +119,32 @@ app.post("/auth/login", async (req, res) =>{
         }
     } else{
 
-        console.log("Usuario não existe")
+        console.log("Usuario não existe registre-se")
+    }
+})
+
+app.post("/hamburguers", async (req, res) =>{
+
+    try{
+
+        console.log(req.body.nome)
+        console.log(req.body.imagem)
+
+        const { nome, ingredientes, valor } = req.body
+        const imagem = req.file ? `/uploads/${req.file.filename}` : null // Caminho da imagem
+
+        const novoHamburguer = await Hamburguer.create({
+
+            nome,
+            ingredientes,
+            valor,
+            imagem,
+        })
+
+        res.status(201).json(novoHamburguer)
+    } catch(error){
+
+        res.send(error)
     }
 })
 
