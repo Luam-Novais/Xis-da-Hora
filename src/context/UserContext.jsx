@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react';
-import { DATA_POST } from '../utilities/api';
+import React, { createContext, useEffect, useState } from 'react';
+import { DATA_POST, GET_TOKEN } from '../utilities/api';
 import { useNavigate } from 'react-router-dom';
 
 export const userContext = createContext();
@@ -50,6 +50,23 @@ const UserStorage = ({ children }) => {
       setIsAuthorized(false);
     }
   }
+  async function verifyToken(token){
+    const {url, options} = GET_TOKEN(token)
+    const response = await fetch(url,options )
+    const json = await response.json()
+
+    if(response.ok){
+      setIsAuthorized(true)
+    }else{
+      setIsAuthorized(false)
+    }
+    console.log(json)
+  }
+
+  useEffect(()=>{
+    const token = window.localStorage.getItem('token')
+    verifyToken(token)
+  })
   return (
     <userContext.Provider
       value={{

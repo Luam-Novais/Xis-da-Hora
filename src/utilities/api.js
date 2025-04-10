@@ -11,8 +11,16 @@ export function DATA_POST(route, body){
         }
     }
 }
-// https://jsonplaceholder.typicode.com/posts
+// 
 
-export function GET_TOKEN(){
-    
+export function GET_TOKEN(token){
+    return {
+        url: '',
+        options: {
+            method: 'GET',
+            headers:{
+                'Authorization' : 'Bearer' + token
+            }
+        }
+    }
 }
