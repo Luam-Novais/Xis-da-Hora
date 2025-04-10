@@ -36,6 +36,7 @@ const UserStorage = ({ children }) => {
       const response = await fetch(url, options);
       const json = await response.json();
 
+      console.log(response)
       if (response.ok) {
         window.localStorage.setItem('token', json.token)
         setUser(json.user.nome) 

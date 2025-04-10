@@ -1,5 +1,6 @@
 @use '../variables' as *;
 .button{
+    max-width: fit-content;
     background: $gradient;
     justify-self: start;
     padding: 10px 50px;

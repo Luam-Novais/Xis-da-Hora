@@ -1,7 +1,7 @@
 
 export function DATA_POST(route, body){
     return {
-        url: 'http://26.235.226.168:3001' + route,
+        url: 'https://xisdahora.up.railway.app' + route,
         options: {
             method: 'POST',
             headers: {
