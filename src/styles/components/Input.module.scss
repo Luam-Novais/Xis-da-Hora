@@ -1,0 +1,37 @@
+@use '../variables' as *;
+.containerInput{
+    display:flex ;
+    flex-direction: column;
+
+    .error{
+        margin-top: 5px;
+        font-size: .875rem;
+        color: red;
+        font-family: $primary-font;
+    }
+    label{
+        display: block;
+        color: black;
+        font-family: $primary-font;
+    }
+    input{
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        outline: none;
+        background-color: $white;
+        border-radius: 5px;
+        box-shadow: 0px 2px 9px #ccc;
+        transition: all .2s ease-in-out;
+        font-family: $secondary-font;
+        &:hover{
+            transform: scale(1.02);
+        }
+        &:focus{
+            border: 2px solid #FBA724;
+            outline: 1.5px solid #FF6600;
+        }
+    }
+
+}

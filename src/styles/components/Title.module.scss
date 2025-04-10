@@ -1,0 +1,11 @@
+@use '../variables' as *;
+.title{
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: $text-color;
+}
+@media(max-width:768px){
+    .title{
+        font-size: 2rem;
+    }
+}
