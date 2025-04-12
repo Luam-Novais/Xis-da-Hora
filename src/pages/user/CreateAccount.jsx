@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import useForm from '../../hooks/useForm';
@@ -16,7 +17,6 @@ const CreateAccount = () => {
   const endereco = useForm('endereco');
   const cidade = useForm('cidade');
   const senha = useForm('senha');
-  const confirmSenha = useForm('senha');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +28,6 @@ const CreateAccount = () => {
       endereco.validate() &&
       cidade.validate() &&
       senha.validate()
-      // confirmSenha.value === senha.value
     ) {
       const formData = {
         nome: nome.value,
@@ -61,9 +60,10 @@ const CreateAccount = () => {
         <Input label="Endereço" id="endereco" name="endereco" type="text" {...endereco} />
         <Input label="Cidade" id="cidade" name="cidade" type="text"  {...cidade} />
         <Input label="Senha" id="senha" name="senha" type="password" className='full-width' {...senha} />
-        <Input label="Confirmar Senha" id="confirmSenha" type="password" name="confirmSenha" className='full-width'/>
 
         <Button className="full-width">Cadastrar</Button>
+
+        <span>Já tem uma conta ? <Link to='/auth/login'>Login</Link></span>
       </form>
     </section>
   );
