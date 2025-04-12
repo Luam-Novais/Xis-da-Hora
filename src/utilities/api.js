@@ -11,11 +11,12 @@ export function DATA_POST(route, body){
         }
     }
 }
-// 
+//https://xisdahora.up.railway.app
+// http://26.252.150.176:3001/
 
 export function GET_TOKEN(token){
     return {
-        url: '',
+        url: 'https://xisdahora.up.railway.app',
         options: {
             method: 'GET',
             headers:{
