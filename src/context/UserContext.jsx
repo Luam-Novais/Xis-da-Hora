@@ -17,16 +17,18 @@ const UserStorage = ({ children }) => {
       const json = await response.json();
 
       if (response.ok) {
-        window.localStorage.setItem('token', json.token)
-        setUser(json.user.nome)
-        setIsAuthorized(true)
+        window.localStorage.setItem('token', json.token);
+        setUser(json.user.nome);
+        setIsAuthorized(true);
         navigate('/');
+      }else if(!response.ok){
+        alert(json.message)
+        setIsAuthorized(false);
       }
     } catch (err) {
-      alert('Ocorreu um erro!', err);
+      alert('Ocorreu um erro inesperado! Verifique sua conexão.', err);
     } finally {
       setLoading(false);
-      setIsAuthorized(false)
     }
   }
   async function userCreate(data) {
@@ -36,37 +38,38 @@ const UserStorage = ({ children }) => {
       const response = await fetch(url, options);
       const json = await response.json();
 
-      console.log(response)
       if (response.ok) {
-        window.localStorage.setItem('token', json.token)
-        setUser(json.user.nome) 
-        setIsAuthorized(true)
+        window.localStorage.setItem('token', json.token);
+        setUser(json.user.nome);
+        setIsAuthorized(true);
         navigate('/');
+      } else if (!response.ok) {
+        alert(json.message);
+        setIsAuthorized(false);
       }
     } catch (err) {
-      alert('Ocorreu um erro!', err);
+      alert('Ocorreu um erro inesperado! Verifique sua conexão.', err);
     } finally {
       setLoading(false);
+    }
+  }
+  async function verifyToken(token) {
+    const { url, options } = GET_TOKEN(token);
+    const response = await fetch(url, options);
+    const json = await response.json();
+
+    console.log(json)
+    if (response.ok) {
+      setIsAuthorized(true);
+    } else {
       setIsAuthorized(false);
     }
   }
-  async function verifyToken(token){
-    const {url, options} = GET_TOKEN(token)
-    const response = await fetch(url,options )
-    const json = await response.json()
 
-    if(response.ok){
-      setIsAuthorized(true)
-    }else{
-      setIsAuthorized(false)
-    }
-    console.log(json)
-  }
-
-  useEffect(()=>{
-    const token = window.localStorage.getItem('token')
-    verifyToken(token)
-  })
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+    verifyToken(token);
+  });
   return (
     <userContext.Provider
       value={{
@@ -75,7 +78,7 @@ const UserStorage = ({ children }) => {
         userLogin,
         userCreate,
         loading,
-        isAuthorized
+        isAuthorized,
       }}
     >
       {children}
