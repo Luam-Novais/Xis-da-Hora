@@ -1,11 +1,12 @@
 @use '../../variables' as *;
 .form{
-    background-color: $white;
+    background-color: $light-gray;
     border-radius: 10px;
-    box-shadow: -2px 4px 9px $gray;
+    box-shadow: $box-shadow;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    min-width: 80vw;
     width: 100%;
     padding: 20px 40px;
     font-family: $primary-font;
@@ -17,6 +18,14 @@
     .form{
         padding: 20px ;
         
+        h1{
+            font-size:  2rem;
+        }
+    }
+}
+@media($mobile){
+    .form{
+        grid-template-columns: 1fr;
         h1{
             font-size:  2rem;
         }
