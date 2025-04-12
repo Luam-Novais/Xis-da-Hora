@@ -1,0 +1,42 @@
+@use '../variables' as *;
+
+.footer{
+    background-color: $yellow-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    font-family: $primary-font;
+    img{
+        width: 80px;
+    }
+    h2{
+        font-weight: 400;
+    }
+    p{
+        color: $text-color;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    ul{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        li{
+            list-style: none;
+            svg{
+                fill: $text-color;
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+}
+@media($tablet){
+    .footer{
+        padding-bottom: 100px;
+        flex-direction: column;
+        align-items: start;
+        gap: 30px;
+    }
+}
