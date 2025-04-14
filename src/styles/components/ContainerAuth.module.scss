@@ -1,5 +1,5 @@
 @use '../variables' as *;
-.container{
+.containerAuth{
     display: grid;
     justify-content: center;
     padding: 20px 60px;
@@ -7,7 +7,7 @@
 }
 
 @media($tablet){
-    .container{
+    .containerAuth{
         padding: 5px;
     }
 }

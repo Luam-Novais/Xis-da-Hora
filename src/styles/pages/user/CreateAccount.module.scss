@@ -1,10 +1,11 @@
 @use '../../variables' as *;
 .form{
-    background-color: $light-gray;
+    background-color: $white;
     border-radius: 10px;
     box-shadow: $box-shadow;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    justify-content: center;
     gap: 20px;
     min-width: 80vw;
     width: 100%;
@@ -26,6 +27,7 @@
 @media($mobile){
     .form{
         grid-template-columns: 1fr;
+        min-width: 90vw;
         h1{
             font-size:  2rem;
         }

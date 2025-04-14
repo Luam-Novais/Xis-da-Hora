@@ -3,7 +3,7 @@ import styles from '../styles/components/ContainerAuth.module.scss'
 
 const ContainerAuth = ({children}) => {
   return (
-    <section className={styles.container}>
+    <section className={styles.containerAuth}>
       {children}
     </section>
   )

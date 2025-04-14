@@ -49,7 +49,7 @@ const CreateAccount = () => {
     return <Loading/>
   }
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit} className={styles.form}>
         <img src="/logo.svg" alt="" className={`${styles.logo} full-width`} />
         <Title >Criar Conta</Title>
@@ -65,7 +65,7 @@ const CreateAccount = () => {
 
         <span>Já tem uma conta ? <Link to='/auth/login'>Login</Link></span>
       </form>
-    </div>
+    </>
   );
 };
 
