@@ -25,7 +25,7 @@ const Login = () => {
     return <Loading/>
   }
   return (
-    <section>
+    <div>
       <form className={styles.form} onSubmit={handleSubmit}>
           <img className={`${styles.logo} full-width`}src="/logo.svg" alt=""/>
           <Title>Entrar</Title>
@@ -35,7 +35,7 @@ const Login = () => {
           <p className="full-width">Ainda não tem uma conta ? crie agora!</p>
           <Link to="/auth/registrar">Criar Conta</Link>
       </form>
-    </section>
+    </div>
   );
 };
 

@@ -3,7 +3,9 @@ import styles from '../styles/components/ContainerAuth.module.scss'
 
 const ContainerAuth = ({children}) => {
   return (
-    <main className={styles.container}>{children}</main>
+    <section className={styles.container}>
+      {children}
+    </section>
   )
 }
 

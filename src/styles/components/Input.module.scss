@@ -32,6 +32,11 @@
             border: 2px solid #FBA724;
             outline: 1.5px solid #FF6600;
         }
+        @media($tablet){
+            &{
+                padding: 15px;
+                font-size: 1.25rem;
+            }
+        }
     }
-
 }
