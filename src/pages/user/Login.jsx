@@ -15,11 +15,15 @@ const Login = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      email: email.value,
-      senha: senha.value,
-    };
-    userLogin(formData)
+    if(email.value && senha.value){
+      const formData = {
+        email: email.value,
+        senha: senha.value,
+      };
+      userLogin(formData)
+    }else{
+      alert('Por favor, preencha todos os dados.')
+    }
   };
   if(loading){
     return <Loading/>
