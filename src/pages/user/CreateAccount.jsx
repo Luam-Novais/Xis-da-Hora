@@ -18,6 +18,7 @@ const CreateAccount = () => {
   const cidade = useForm('cidade');
   const senha = useForm('senha');
 
+  console.log()
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -69,5 +70,5 @@ const CreateAccount = () => {
   );
 };
 
-export default CreateAccount;
+export default React.memo(CreateAccount);
 
