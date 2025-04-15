@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 export const userContext = createContext();
 const UserStorage = ({ children }) => {
   const [user, setUser] = useState('');
+  const [errorModal, setErrorModal] = useState(false)
+  const [message, setMessage] = useState('')
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -22,7 +24,8 @@ const UserStorage = ({ children }) => {
         setIsAuthorized(true);
         navigate('/');
       }else if(!response.ok){
-        alert(json.message)
+        setMessage(json.message)
+        setErrorModal(true)
         setIsAuthorized(false);
       }
     } catch (err) {
@@ -44,8 +47,9 @@ const UserStorage = ({ children }) => {
         setIsAuthorized(true);
         navigate('/');
       } else if (!response.ok) {
-        alert(json.message);
+        setMessage(json.message)
         setIsAuthorized(false);
+        setErrorModal(true)
       }
     } catch (err) {
       alert('Ocorreu um erro inesperado! Verifique sua conexão.', err);
@@ -53,28 +57,31 @@ const UserStorage = ({ children }) => {
       setLoading(false);
     }
   }
-  async function verifyToken(token) {
-    const { url, options } = GET_TOKEN(token);
-    const response = await fetch(url, options);
-    const json = await response.json();
+  // async function verifyToken(token) {
+  //   const { url, options } = GET_TOKEN(token);
+  //   const response = await fetch(url, options);
+  //   const json = await response.json();
 
-    console.log(json)
-    if (response.ok) {
-      setIsAuthorized(true);
-    } else {
-      setIsAuthorized(false);
-    }
-  }
+  //   console.log(json)
+  //   if (response.ok) {
+  //     setIsAuthorized(true);
+  //   } else {
+  //     setIsAuthorized(false);
+  //   }
+  // }
 
-  useEffect(() => {
-    const token = window.localStorage.getItem('token');
-    verifyToken(token);
-  });
+  // useEffect(() => {
+  //   const token = window.localStorage.getItem('token');
+  //   verifyToken(token);
+  // });
   return (
     <userContext.Provider
       value={{
         user,
         setUser,
+        errorModal,
+        message,
+        setErrorModal,
         userLogin,
         userCreate,
         loading,
