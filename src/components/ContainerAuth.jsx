@@ -1,14 +1,14 @@
-import React from 'react'
-import styles from '../styles/components/ContainerAuth.module.scss'
-import FeedBackModal from './FeedBackModal'
+import React from 'react';
+import styles from '../styles/components/ContainerAuth.module.scss';
+import FeedbackModal from '../components/FeedbackModal';
 
-const ContainerAuth = ({children}) => {
+const ContainerAuth = ({ children }) => {
   return (
     <section className={styles.containerAuth}>
-      <FeedBackModal/>
+      <FeedbackModal />
       {children}
     </section>
-  )
-}
+  );
+};
 
-export default ContainerAuth
+export default ContainerAuth;
