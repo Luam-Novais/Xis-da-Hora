@@ -18,12 +18,11 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <GlobalContext>
-
         <Routes>
-        //public routes
+          //public routes
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="cardapio" element={<Cardapio />} />
+            <Route path="cardapio/:id?" element={<Cardapio />}/>
             <Route path="carrinho" element={<Carrinho />} />
             <Route
               path="minhaConta"
