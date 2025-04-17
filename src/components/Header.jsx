@@ -1,17 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from '../styles/components/Header.module.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { IoHome, IoFastFood, IoBagHandle, IoPerson, IoLogIn} from "react-icons/io5";
 import useMedia from '../hooks/useMedia';
 import { userContext } from '../context/UserContext';
 
 const Header = () => {
+  const {id} = useParams()
+  const categoryId = id || 'burgers'
   const mobile = useMedia('(max-width: 768px)')
   const {isAuthorized, user} = useContext(userContext)
-
   const firstName = user.split(' ')[0]
-
-  console.log(firstName)
 
   return (
     <header className={!mobile ? styles.header : styles.headerMobile}>
@@ -22,7 +21,7 @@ const Header = () => {
             <NavLink to='/' className={({isActive}) => isActive ? `${styles.active}` : ''}>
             <i><IoHome/></i></NavLink></li>}
           <li>
-            <NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='cardapio'>
+            <NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to={`cardapio/${categoryId}`}>
               {!mobile ? 'Cardapio' : <i><IoFastFood/></i> }
             </NavLink>
           </li>
