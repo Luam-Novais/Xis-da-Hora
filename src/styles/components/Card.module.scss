@@ -1,0 +1,111 @@
+@use '../variables' as * ;
+.card{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+    max-width: 300px;
+    background-color: $full-white;
+    border-radius: 10px;
+    box-shadow: 
+    2px 2px 9px $gray, 
+    inset -2px -4px 9px $full-white, 
+    inset -2px -2px 9px $gray;
+    color: $text-color;
+    img{
+        width: 100%;
+        border-radius: 5px;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        h2{
+            font-family: $highlight-font;
+        }
+        p{
+            font-family: $secondary-font;
+        }
+        .buttonsContainer{
+            display: flex;
+            gap: 10px;
+            .quantityContainer{
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                border: 2px solid $text-color;
+                max-width: fit-content;
+                border-radius: 15px;
+                box-shadow: $box-shadow;
+                button{
+                    background-color: transparent;
+                    border: none;
+                    padding: 10px;
+                }
+                p{
+                    font-family: $highlight-font;
+                    font-size: 1.5rem;
+                }
+            }
+            .addButton{
+                display: flex;
+                justify-content: space-around;
+                gap: 10px;
+                padding: 10px 20px;
+                align-items: center;
+                max-width: fit-content;
+                background: $green-gradient;
+                color: $text-color;
+                font-family: $highlight-font;
+                font-size: 1.375rem;
+                border-radius: 5px;
+                border: none;
+                box-shadow: $box-shadow;
+            }
+        }
+    }
+}
+@media($tablet){
+    .card{
+        min-width: 90%;
+        max-width: none;
+        img{
+            height: 300px;
+        }
+    }
+}
+@media($mobile){
+    .card{
+        img{
+            height: 200px;
+        }
+        .content{
+            .buttonsContainer{
+                flex-direction: column;
+                gap: 20px;
+                .quantityContainer,
+                .addButton{
+                    min-width: 100%;
+                    width: 100%;
+                }
+                .quantityContainer{
+                    justify-content: space-around;
+                    button{
+                        font-size: 1.5rem;
+                        padding: 15px;
+                    }
+                }
+                .addButton{
+                    justify-content: center;
+                    gap: 20px;
+                    padding: 15px;
+                }
+            }
+        }
+    }
+}
