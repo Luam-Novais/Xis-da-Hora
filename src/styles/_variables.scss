@@ -1,6 +1,6 @@
 //fontes
 
-$highlight-font: 'barlow condensed';
+$highlight-font: 'bebas neue';
 $primary-font: 'poppins';
 $secondary-font: 'nunito sans';
 
@@ -11,6 +11,7 @@ $dark-yellow-color: #FF6600;
 $red-color: #B91F17; 
 $dark-red-color: #7A0000;
 $gradient: linear-gradient(#FF8000, #FF2B00);
+$green-gradient: linear-gradient(#50C533, #3C9526);
 
 //texts colors
 $text-color: #140902;
@@ -26,6 +27,7 @@ $dark-gray: #ddd;
 //shadows
 $box-shadow: -2px 2px 9px $gray;
 $input-shadows: 2px 2px 9px $gray, -2px -2px 9px $full-white;
+$card-shadow: 2px 2px 9px $gray, -2px -2px 9px $full-white;
 
 //screen sizes 
 
