@@ -1,0 +1,12 @@
+@use '../variables' as *;
+.container{
+    display: grid;
+    padding: 20px 60px;
+}
+@media($tablet){
+    .container{
+        grid-template-columns: 1fr;
+        justify-content: center;
+        padding: 20px;
+    }
+}
