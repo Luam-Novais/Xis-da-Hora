@@ -3,20 +3,20 @@ import {IoBagHandle} from "react-icons/io5";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import styles from '../styles/components/Card.module.scss'
 
-const changeQuantity = (state, action) =>{
+function changeQuantity(quantity, action){
     switch(action){
-        case 'increment' :{
-            return state + 1
+        case 'increment':{
+            return quantity + 1
         }
         case 'decrement':{
-            if(state > 0){
-                return state - 1
+            if(quantity > 0){
+                return quantity - 1
             }else{
-                return state = 0
+                return quantity = 0
             }
         }
-        default :{
-            return console.log('action invalida')
+        default:{
+            alert('Action inválida.')
         }
     }
 }
