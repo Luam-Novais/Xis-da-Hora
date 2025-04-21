@@ -45,3 +45,11 @@
         }
     }
 }
+@media($mobile){
+   .overlay{
+    .containerModal{
+        max-width: 90vw;
+        height: 30vh;
+    }
+   }
+}
