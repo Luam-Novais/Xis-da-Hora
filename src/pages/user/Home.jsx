@@ -1,21 +1,35 @@
-import React from 'react'
-import styles from '../../styles/pages/user/Home.module.scss'
-import Button from '../../components/Button'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import styles from '../../styles/pages/user/Home.module.scss';
 
 const Home = () => {
   return (
-    <section className={styles.hero} >
-        <div>
-            <h1>
-                PORQUE A FOME <br/>
-                NÃO TEM HORA!
-            </h1>
-            <Link to='cardapio'><Button>Fazer Pedido</Button></Link>
-        </div>
-        <img src="/burger-home.png" alt="" />
-    </section>
-  )
-}
+    <div className={styles.container}>
+      <span className={styles.hero}></span>
+      <ul className={styles.content}>
+        <h1>Novidades<span>.</span></h1>
+        <li>
+          <img src="/tropeiro.jpg" alt="" />
+          <div>
+            <h2>X-tudão</h2>
+            <p>Pão, carne, queijo, alface e tomate</p>
+            <p>
+              <b>R$35,90</b>
+            </p>
+          </div>
+        </li>
+        <li>
+          <img src="/tropeiro.jpg" alt="" />
+          <div>
+            <h2>X-tudão</h2>
+            <p>Pão, carne, queijo, alface e tomate</p>
+            <p>
+              <b>R$35,90</b>
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  );
+};
 
-export default Home
+export default Home;

@@ -1,75 +1,89 @@
 @use '../../variables' as *;
-.hero{
-    padding: 40px 60px ;
-    background-image: url('/bg-home.svg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    justify-content: center;
-    align-items: start;
-
-    div{
+.container{
+    .hero{
+        background: url('/burger-home.jpg');
+        background-position: center;
+        background-size: cover;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 400px;
+        width: 100%;
+        z-index: -1;
+        border-radius: 0px 0px 10px 10px;
+        box-shadow: 0px 4px 9px #00000077;
+    
+    }
+    .content{
+        padding-block: 320px;
+        padding-inline: 60px;
         display: flex;
         flex-direction: column;
         gap: 40px;
-
-        button{
-            box-shadow: 0px 4px 9px rgba($color: #000000, $alpha: 0.3);
-        }
-    }
-    h1{
-        font-family: $highlight-font;
-        color: $text-color;
-        font-size: 5rem;
-        font-weight: 700;
-        text-shadow: 0px 2px 9px rgba(0, 0, 0, 0.2);
-    }
-    img{
-        width: 500px;
-        animation: animateImg 3s ease-in-out infinite;
-    }
-}
-@keyframes animateImg {
-    0%{
-        transform: scale(1);
-    }
-    50%{
-        transform: scale(1.01);
-    }
-    100%{
-        transform: scale(1);
-    }
-}
-
-@media($tablet){
-    .hero{
-        width: 100%;
-        grid-template-columns: 1fr;
-        justify-content: center;
-        justify-items: center;
-        align-items: center;
-        gap: 10px;
-        padding: 0px;
-        img{
-            width: 400px;
-        }
         h1{
-            font-size: 3.5rem;
+            position: relative;
+            font-family: $primary-font;
+            font-weight: 400;
+            color: $text-color;
+            span{
+                color: $yellow-color;
+            }
         }
-        button{
-
-            margin: 0 auto;
-            justify-self: center;
+        li{
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            img{
+                width: 150px;
+                height: 150px;
+                border-radius: 10px;
+                object-fit: cover;
+                object-position: center;
+            }
+            div{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                h2{
+                    font-family: $primary-font;
+                    font-weight: 500;
+                }
+                p{
+                    font-family: $secondary-font;
+                }
+                .addButton{
+                    display: flex;
+                    justify-content: space-around;
+                    gap: 10px;
+                    padding: 5px 20px;
+                    align-items: center;
+                    max-width: fit-content;
+                    background: $green-gradient;
+                    color: $text-color;
+                    font-family: $highlight-font;
+                    font-size: 1rem;
+                    border-radius: 5px;
+                    border: none;
+                    box-shadow: $box-shadow;
+                }
+            }
         }
     }
 }
-
-// @media(max-width:578px){
-//     .hero{
-//         h1{
-//             font-size: 2rem;
-//         }
-//     }
-// }
+@media($mobile){
+    .container{
+        .hero{
+            height: 200px;
+        }
+        .content{
+            padding-block: 220px;
+            padding-inline: 20px ;
+            li{
+                img{
+                    height: 120px;
+                    width: 120px;
+                }
+            }
+        }
+    }
+}

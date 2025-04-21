@@ -18,7 +18,6 @@ const CreateAccount = () => {
   const cidade = useForm('cidade');
   const senha = useForm('senha');
 
-  console.log()
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
