@@ -46,6 +46,9 @@
                     background-color: transparent;
                     border: none;
                     padding: 10px;
+                    svg{
+                        fill: $text-color;
+                    }
                 }
                 p{
                     font-family: $highlight-font;
