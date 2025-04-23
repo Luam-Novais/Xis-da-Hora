@@ -6,7 +6,7 @@ const types = {
     message: 'Por favor, insira um email válido!'
   },
   senha: {
-     regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+     regex: /^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,}$/,
      message: 'A senha deve conter letars e números e no mínimo 8 caracteres.'
   },
   cep:{
