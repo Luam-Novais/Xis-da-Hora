@@ -36,22 +36,27 @@ const RegisterBurger = () => {
             ingredients &&
             valor.value
         ){
-            formData.append('image', media)
+            formData.append('imagem', media)
             formData.append('nome', nome.value)
             formData.append('ingredientes', ingredients)
             formData.append('valor', valor.value)
         }
-        for(let pair of formData.entries()){
-            console.log(pair[0] + ':', pair[1])
-        }
+        
+        console.log([...formData.entries()])
+        const response = await fetch('http://26.252.150.176:3001/hamburguers', {
+            method: 'POST',
+            body: formData
+        })
+
+        console.log(response)
     }
     return (
         <section className={styles.container}>
             <Title>Registrar Hamburger</Title>
             <form action="" onSubmit={handleSubmit}>
-                    <label htmlFor="image" className={styles.fileUpload}>
+                    <label htmlFor="imagem" className={styles.fileUpload}>
                         Selecionar Imagem <IoMdCloudUpload />
-                        <input type='file' id='image' name='image' onChange={handleMedia}/>
+                        <input type='file' id='imagem' name='imagem' onChange={handleMedia}/>
                     </label>
                 {
                     previewImg ? 
@@ -65,10 +70,10 @@ const RegisterBurger = () => {
                 }
                 <Input type='text' name='nome' id='nome' label='Nome do alimento' {...nome}/>
                 <span>
-                    <label htmlFor="descricao"> Ingredientes / Descrição</label>
-                    <textarea id='descricao' name='descricao' value={ingredients} onChange={handleIngredients}/>
+                    <label htmlFor="ingredinetes"> Ingredientes / Descrição</label>
+                    <textarea id='ingredinetes' name='ingredinetes' value={ingredients} onChange={handleIngredients}/>
                 </span>
-                <Input type='number' name='valor' id='valor' label='Valor' {...valor}/>
+                <Input type='text' name='valor' id='valor' label='Valor' {...valor}/>
 
                 <Button>Registrar</Button>
 

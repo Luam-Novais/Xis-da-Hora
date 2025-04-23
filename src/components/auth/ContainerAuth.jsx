@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from '../styles/components/ContainerAuth.module.scss';
-import FeedbackModal from '../components/FeedbackModal';
+import styles from '../../styles/components/auth/ContainerAuth.module.scss';
+import FeedbackModal from '../modals/FeedbackModal';
 
 const ContainerAuth = ({ children }) => {
   return (

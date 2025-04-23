@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import styles from '../styles/components/FeedbackModal.module.scss';
-import { userContext } from '../context/UserContext';
+import styles from '../../styles/components/modals/FeedbackModal.module.scss';
+import { userContext } from '../../context/UserContext';
 const FeedBackModal = () => {
   const { errorModal, setErrorModal, message } = useContext(userContext);
   if (errorModal) {
@@ -27,4 +27,4 @@ const FeedBackModal = () => {
   );
 };
 
-export default FeedBackModal; 
+export default FeedBackModal;

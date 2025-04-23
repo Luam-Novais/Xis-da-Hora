@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from '../styles/components/Header.module.scss';
+import styles from '../../styles/components/layout/Header.module.scss';
 import { NavLink, useParams } from 'react-router-dom';
 import { IoHome, IoFastFood, IoBagHandle, IoPerson, IoLogIn} from "react-icons/io5";
-import useMedia from '../hooks/useMedia';
-import { userContext } from '../context/UserContext';
+import useMedia from '../../hooks/useMedia';
+import { userContext } from '../../context/UserContext';
 
 const Header = () => {
   const {id} = useParams()

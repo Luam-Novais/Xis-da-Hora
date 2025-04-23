@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/components/Button.module.scss'
+import styles from '../../styles/components/common/Button.module.scss'
 
 
 const Button = ({children, className, type}) => {

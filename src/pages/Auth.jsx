@@ -1,5 +1,5 @@
 import React from 'react'
-import ContainerAuth from '../components/ContainerAuth'
+import ContainerAuth from '../components/auth/ContainerAuth'
 import { Outlet } from 'react-router-dom'
 
 const Auth = () => {

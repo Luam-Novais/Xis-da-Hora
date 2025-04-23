@@ -1,13 +1,13 @@
 import React, { use, useContext, useState} from 'react';
 import styles from '../../styles/pages/user/Login.module.scss'
 import { Link } from 'react-router-dom';
-import Input from '../../components/Input';
-import PasswordInput from '../../components/PasswordInput';
-import Button from '../../components/Button';
+import Input from '../../components/common/Input';
+import PasswordInput from '../../components/common/PasswordInput';
+import Button from '../../components/common/Button';
 import useForm from '../../hooks/useForm';
 import { userContext } from '../../context/UserContext';
-import Loading from '../../components/Loading'
-import Title from '../../components/Title';
+import Loading from '../../components/common/Loading'
+import Title from '../../components/common/Title';
 
 const Login = () => {
   const { userLogin, loading } = useContext(userContext)

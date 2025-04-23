@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import {IoBagHandle} from "react-icons/io5";
 import { FaMinus, FaPlus } from "react-icons/fa6";
-import styles from '../styles/components/Card.module.scss'
+import styles from '../../styles/components/common/Card.module.scss'
 
 function changeQuantity(quantity, action){
     switch(action){

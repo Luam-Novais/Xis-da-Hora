@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/components/PasswordInput.module.scss';
+import styles from '../../styles/components/common/PasswordInput.module.scss';
 import { LuEye, LuEyeClosed } from 'react-icons/lu';
 
 const PasswordInput = ({ label, name, id, className, onBlur, ...props }) => {

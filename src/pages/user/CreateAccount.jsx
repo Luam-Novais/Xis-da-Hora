@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Input from '../../components/Input';
-import PasswordInput from '../../components/PasswordInput';
-import Button from '../../components/Button';
+import Input from '../../components/common/Input';
+import PasswordInput from '../../components/common/PasswordInput';
+import Button from '../../components/common/Button';
 import useForm from '../../hooks/useForm';
-import Title from '../../components/Title';
+import Title from '../../components/common/Title';
 import styles from '../../styles/pages/user/CreateAccount.module.scss'
 import { userContext } from '../../context/UserContext';
-import Loading from '../../components/Loading';
+import Loading from '../../components/common/Loading';
 
 const CreateAccount = () => {
   const {userCreate, loading} = useContext(userContext)

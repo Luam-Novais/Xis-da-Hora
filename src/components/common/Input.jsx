@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/components/Input.module.scss';
+import styles from '../../styles/components/common/Input.module.scss';
 
 const Input = ({ label, type, name, id, className, onBlur, ...props }) => {
   return (

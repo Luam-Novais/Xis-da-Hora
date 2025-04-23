@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/components/Footer.module.scss'
+import styles from '../../styles/components/layout/Footer.module.scss'
 import { IoLogoWhatsapp, IoLogoInstagram, IoLogoFacebook} from "react-icons/io";
 
 const Footer = () => {
