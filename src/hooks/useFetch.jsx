@@ -17,7 +17,6 @@ const useFetch = () => {
             if(!response.ok) throw new Error(json.message)
         }catch(err){
             setError(err)
-            alert(err + 'Ocorreu um erro ao carregar os recursos. Verifique sua conexão.')
         }
         finally{
             setLoading(false)

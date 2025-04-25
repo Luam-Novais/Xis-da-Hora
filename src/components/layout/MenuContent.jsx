@@ -5,6 +5,7 @@ import Loading from '../common/Loading'
 import { useParams } from 'react-router-dom'
 import { urlProd } from '../../utilities/urls'
 import useFetch from '../../hooks/useFetch'
+import { FaGear } from "react-icons/fa6";
 
 const MenuContent = () => {
   const {id} = useParams()
@@ -14,6 +15,14 @@ const MenuContent = () => {
   },[id])
   if(loading){
     return <Loading/>
+  }
+  if(error){
+    return (
+      <span className={styles.containerError}>
+        <p>Opsss. Infelizmente ocorreu um erro ao carregar nossos recursos.</p>
+        <p>Estamos trabalhando nisso... <i><FaGear/></i></p>
+      </span>
+    )
   }
   if(data){
     return (
