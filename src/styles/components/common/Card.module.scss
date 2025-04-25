@@ -13,6 +13,7 @@
     inset -2px -4px 9px $full-white, 
     inset -2px -2px 9px $gray;
     color: $text-color;
+
     img{
         width: 100%;
         border-radius: 5px;
@@ -26,7 +27,8 @@
         gap: 10px;
         width: 100%;
         h2{
-            font-family: $highlight-font;
+            font-family: $primary-font;
+            letter-spacing: 1.5px;
         }
         p{
             font-family: $secondary-font;

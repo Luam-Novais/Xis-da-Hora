@@ -2,6 +2,8 @@ import React, { useReducer } from 'react'
 import {IoBagHandle} from "react-icons/io5";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import styles from '../../styles/components/common/Card.module.scss'
+import { urlProd } from '../../utilities/urls';
+import LazyImage from './LazyImage';
 
 function changeQuantity(quantity, action){
     switch(action){
@@ -20,15 +22,15 @@ function changeQuantity(quantity, action){
         }
     }
 }
-const Card = () => {
+const Card = ({src, nome, valor, ingredientes}) => {
     const [quantity, dispatch] = useReducer(changeQuantity, 0)
   return (
     <div className={styles.card}>
-        <img src="/tropeiro.jpg" alt="" />
+        <LazyImage src={`${urlProd}uploads/${src}`}/>
         <div className={styles.content}>
-            <h2>X-tudão</h2>
-            <p>Pão, carne, queijo, alface e tomate</p>
-            <p><b>R$35,90</b></p>
+            <h2>{nome}</h2>
+            <p>{ingredientes}</p>
+            <p><b>{valor}</b></p>
 
             <div className={styles.buttonsContainer}>
                 <span className={styles.quantityContainer}>
