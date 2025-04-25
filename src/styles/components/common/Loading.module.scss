@@ -1,19 +1,24 @@
 @use '../../variables' as *;
-.loading{
-    width: 3.25em;
-    transform-origin: center;
-    animation: rotate4 2s linear infinite;
-
-    circle {
-     fill: none;
-     stroke: $yellow-color;
-     stroke-width: 2;
-     stroke-dasharray: 1, 200;
-     stroke-dashoffset: 0;
-     stroke-linecap: round;
-     animation: dash4 1.5s ease-in-out infinite;
-    }
-   }
+.container{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    .loading{
+        width: 3.25em;
+        transform-origin: center;
+        animation: rotate4 2s linear infinite;
+    
+        circle {
+         fill: none;
+         stroke: $yellow-color;
+         stroke-width: 2;
+         stroke-dasharray: 1, 200;
+         stroke-dashoffset: 0;
+         stroke-linecap: round;
+         animation: dash4 1.5s ease-in-out infinite;
+        }
+       }
+}
    
    
    @keyframes rotate4 {
