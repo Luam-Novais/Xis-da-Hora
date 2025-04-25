@@ -1,9 +1,20 @@
 @use '../../variables' as *;
 .container{
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
     padding: 20px 60px;
+    justify-items: center;
+    align-items: center;
+    gap: 30px;
 }
 @media($tablet){
+    .container{
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        padding: 20px;
+    }
+}
+@media($mobile){
     .container{
         grid-template-columns: 1fr;
         justify-content: center;
