@@ -1,7 +1,9 @@
+import { urlProd, urlTest } from "./urls"
+
 
 export function DATA_POST(route, body){
     return {
-        url: 'http://26.252.150.176:3001' + route,
+        url: urlProd + route,
         options: {
             method: 'POST',
             headers: {
@@ -11,12 +13,10 @@ export function DATA_POST(route, body){
         }
     }
 }
-//https://xisdahora.up.railway.app
-// http://26.252.150.176:3001/
 
 export function GET_TOKEN(token){
     return {
-        url: 'https://xisdahora.up.railway.app',
+        url: urlProd,
         options: {
             method: 'GET',
             headers:{
