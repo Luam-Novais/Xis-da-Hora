@@ -1,16 +1,16 @@
 @use '../../variables' as *;
 .container{
-    background-color: $white;
-    margin: 20px 60px;
-    padding: 20px 60px;
-    border-radius: 10px;
-    box-shadow: -2px 4px 9px $gray;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    color: $text-color;
-
+    width: 100%;
     form{
+        background-color: $white;
+        border-radius: 10px;
+        box-shadow: -2px 4px 9px $gray;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        color: $text-color;
+        margin: 20px 60px;
+        padding: 20px 60px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -34,8 +34,9 @@
     .fileUpload{
         position: relative;
         padding: 10px 30px;
-        background-color: $white;
-        box-shadow: 0px 2px 9px $gray;
+        background-color: $light-gray;
+        border:  1px solid $gray;
+        box-shadow: $input-shadows;
         border-radius: 5px;
         max-width: fit-content;
         display: flex;
