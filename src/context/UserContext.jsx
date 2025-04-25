@@ -12,7 +12,7 @@ const UserStorage = ({ children }) => {
   const navigate = useNavigate();
 
   async function userLogin(data) {
-    const { url, options } = DATA_POST('/auth/login', data);
+    const { url, options } = DATA_POST('auth/login', data);
     setLoading(true);
     try {
       const response = await fetch(url, options);
@@ -35,7 +35,7 @@ const UserStorage = ({ children }) => {
     }
   }
   async function userCreate(data) {
-    const { url, options } = DATA_POST('/auth/registrar', data);
+    const { url, options } = DATA_POST('auth/registrar', data);
     setLoading(true);
     try {
       const response = await fetch(url, options);
