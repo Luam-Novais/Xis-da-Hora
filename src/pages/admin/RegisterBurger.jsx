@@ -5,6 +5,7 @@ import Loading from '../../components/common/Loading';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import styles from '../../styles/pages/admin/RegisterBurger.module.scss';
+import {urlProd} from '../../utilities/urls'
 import useForm from '../../hooks/useForm';
 
 const RegisterBurger = () => {
@@ -49,7 +50,7 @@ const RegisterBurger = () => {
 
             try{
                 setLoading(true)
-                const response = await fetch('https://xisdahora.up.railway.app/hamburguers', {
+                const response = await fetch( urlProd +'hamburguers', {
                     method: 'POST',
                     body: formData
                 })
