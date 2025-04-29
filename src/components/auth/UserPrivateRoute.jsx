@@ -3,10 +3,19 @@ import { userContext } from '../../context/UserContext'
 import { Navigate } from 'react-router-dom'
 
 const UserPrivateRoute = ({children}) => {
-    const {isAuthorized} = useContext(userContext)
-  return (
-        <>{isAuthorized ? children : <Navigate to='/auth/login' replace/> }</>
-  )
+    const {user} = useContext(userContext)
+
+    if(!user){
+      return(
+        <Navigate to='/auth/login' replace/>
+      )
+    }
+
+    return(
+      <>
+        {children}
+      </>
+    )
 }
 
 export default UserPrivateRoute
