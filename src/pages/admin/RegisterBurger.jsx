@@ -111,7 +111,7 @@ const RegisterBurger = () => {
             <option value="bebidas">Bebidas</option>
             <option value="sobremesas">Sobremesas</option>
         </select>
-        <Input type="text" name="valor" id="valor" label="Valor" {...valor} />
+        <Input type="number" name="valor" id="valor" label="Valor" {...valor} />
         <Button>Registrar</Button>
       </form>
     </section>
