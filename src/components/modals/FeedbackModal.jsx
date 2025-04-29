@@ -1,30 +1,27 @@
-import React, { useContext } from 'react';
-import styles from '../../styles/components/modals/FeedbackModal.module.scss';
-import { userContext } from '../../context/UserContext';
-const FeedBackModal = () => {
-  const { errorModal, setErrorModal, message } = useContext(userContext);
-  if (errorModal) {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
-  }
-  function handleClick() {
-    setErrorModal(false);
-  }
+// import React, { useContext } from 'react';
+// import styles from '../../styles/components/modals/FeedbackModal.module.scss';
+// import { userContext } from '../../context/UserContext';
+// const FeedBackModal = () => {
+//   const {  message, statusModal } = useContext(userContext);
+//   if (message) {
+//     window.scrollTo({ top: 0, behavior: 'instant' });
+//     document.body.style.overflow = 'hidden';
+//   } else {
+//     document.body.style.overflow = '';
+//   }
+//   function handleClick() {
+//   }
 
-  return (
-    <>
-      {errorModal && (
-        <div className={styles.overlay}>
-          <div className={styles.containerModal}>
-            <p>{message}</p>
-            <button onClick={handleClick}>ok</button>
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
+//   return (
+//     <>
+//         <div className={styles.overlay}>
+//           <div className={`${styles.containerModal}`} style={{borderColor: statusModal === 'sucess' ? 'green' : 'red' }}>
+//             <p>{message}.</p>
+//             <button>ok</button>
+//           </div>
+//         </div>
+//     </>
+//   );
+// };
 
-export default FeedBackModal;
+// export default FeedBackModal;
