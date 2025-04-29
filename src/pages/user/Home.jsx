@@ -7,8 +7,7 @@ const Home = () => {
 
 
     <div className={styles.container}>
-      <RegisterBurger/>
-      {/* <span className={styles.hero}></span>
+      <span className={styles.hero}></span>
       <ul className={styles.content}>
         <h1>Novidades<span>.</span></h1>
         <li>
@@ -31,7 +30,7 @@ const Home = () => {
             </p>
           </div>
         </li>
-      </ul> */}
+      </ul>
     </div>
   );
 };

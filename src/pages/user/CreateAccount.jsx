@@ -55,9 +55,9 @@ const CreateAccount = () => {
         <img src="/logo.svg" alt="" className={`${styles.logo} full-width`} />
         <Title >Criar Conta</Title>
         <Input label="Nome" id="nome" name="name" type="text" {...nome} />
-        <Input label="Numero" id="telefone" name="telefone" type="text" {...telefone} />
-        <Input label="Email" id="email" name="email" type="email" className='full-width'{...email} />
-        <Input label="Cep" id="cep" name="cep" type="number" {...cep} />
+        <Input label="Numero" id="telefone" name="telefone" type="text" {...telefone} placeholder='00 000000000'/>
+        <Input label="Email" id="email" name="email" type="email" className='full-width'{...email} placeholder='email@email.com'/>
+        <Input label="Cep" id="cep" name="cep" type="number" {...cep} placeholder='00000-00'/>
         <Input label="Endereço" id="endereco" name="endereco" type="text" {...endereco} />
         <Input label="Cidade" id="cidade" name="cidade" type="text"  {...cidade} />
         <PasswordInput label="Senha" id="senha" name="senha" className="full-width" {...senha} />
