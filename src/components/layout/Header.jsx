@@ -10,7 +10,7 @@ const Header = () => {
   const categoryId = id || 'burgers'
   const mobile = useMedia('(max-width: 768px)')
   const {isAuthorized, user} = useContext(userContext)
-  const firstName = user.split(' ')[0]
+  const firstName = 'teste'
 
   return (
     <header className={!mobile ? styles.header : styles.headerMobile}>
