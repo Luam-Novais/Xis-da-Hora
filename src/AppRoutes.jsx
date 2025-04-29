@@ -8,8 +8,12 @@ import Home from './pages/user/Home';
 import Cardapio from './pages/user/Cardapio';
 import Carrinho from './pages/user/Carrinho';
 import MyAccount from './pages/user/MyAccount';
-import RouteAuthorization from './components/auth/RouteAuthorization';
+import UserPrivateRoute from './components/auth/UserPrivateRoute';
 import PublicLayout from './layouts/PublicLayout';
+import AdminLayout from './layouts/AdminLayout';
+import AdminPrivateRoute from './components/auth/AdminPrivateRoute';
+import RegisterBurger from './pages/admin/RegisterBurger';
+import Unauthorized from './components/layout/Unauthorized';
 
 const AppRoutes = () => {
   return (
@@ -24,9 +28,9 @@ const AppRoutes = () => {
             <Route
               path="minhaConta"
               element={
-                <RouteAuthorization>
+                <UserPrivateRoute>
                   <MyAccount />
-                </RouteAuthorization>
+                </UserPrivateRoute>
               }
             />
             <Route path="/auth" element={<Auth />}>
@@ -34,6 +38,17 @@ const AppRoutes = () => {
               <Route path="registrar" element={<CreateAccount />} />
             </Route>
           </Route>
+
+          //admin routes
+            <Route element={<AdminLayout/>}>
+              <Route path='/admin/functions'
+                element={
+                <AdminPrivateRoute>
+                  <RegisterBurger/>
+                </AdminPrivateRoute>}
+              />
+              <Route path='/unauthorized' element={<Unauthorized/>}/>
+            </Route>
           <Route path="*" />
         </Routes>
       </GlobalContext>
