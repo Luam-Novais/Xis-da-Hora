@@ -16,7 +16,7 @@ export function DATA_POST(route, body){
 
 export function GET_TOKEN(token){
     return {
-        url: 'http://26.235.226.168:3001/auth/validar-token',
+        url: urlProd + 'auth/validar-token',
         options: {
             method: 'GET',
             headers:{
