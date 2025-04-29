@@ -24,13 +24,15 @@ function changeQuantity(quantity, action){
 }
 const Card = ({src, nome, valor, ingredientes}) => {
     const [quantity, dispatch] = useReducer(changeQuantity, 0)
+    const price = valor.toString().replace('.', ',')
+
   return (
     <div className={styles.card}>
         <LazyImage src={`${urlProd}uploads/${src}`}/>
         <div className={styles.content}>
             <h2>{nome}</h2>
             <p>{ingredientes}</p>
-            <p><b>{valor}</b></p>
+            <p><b>R$ {price}</b></p>
 
             <div className={styles.buttonsContainer}>
                 <span className={styles.quantityContainer}>

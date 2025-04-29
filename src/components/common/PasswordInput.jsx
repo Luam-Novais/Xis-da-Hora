@@ -12,7 +12,13 @@ const PasswordInput = ({ label, name, id, className, onBlur, ...props }) => {
     <div className={`${styles.containerInput} ${className}`}>
       <label htmlFor={id}>{label}</label>
       <span>
-        <input type={showPass ? 'text' : 'password'} name={name} id={id} value={props.value} onChange={props.onChange} onBlur={onBlur} />
+        <input 
+          type={showPass ? 'text' : 'password'} 
+          name={name} id={id} 
+          value={props.value} 
+          onChange={props.onChange} 
+          onBlur={onBlur}
+          autoComplete='current-password'/>
         <button type="button" onClick={handleShowPass}>
           <i>{showPass ? <LuEye /> : <LuEyeClosed />}</i>
         </button>
