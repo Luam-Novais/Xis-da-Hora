@@ -1,16 +1,16 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { DATA_POST, GET_TOKEN } from '../utilities/api';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 export const userContext = createContext();
 const UserStorage = ({ children }) => {
-  const [user, setUser] = useState('');
-  const [errorModal, setErrorModal] = useState(false)
+  const [user, setUser] = useState(null);
   const [message, setMessage] = useState('')
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  
   async function userLogin(data) {
     const { url, options } = DATA_POST('auth/login', data);
     setLoading(true);
@@ -20,13 +20,13 @@ const UserStorage = ({ children }) => {
 
       if (response.ok) {
         window.localStorage.setItem('token', json.token);
-        setUser(json.user.nome);
+        setUser(json.user);
         setIsAuthorized(true);
         navigate('/');
       }else if(!response.ok){
         setMessage(json.message)
-        setErrorModal(true)
         setIsAuthorized(false);
+        alert(message)
       }
     } catch (err) {
       alert('Ocorreu um erro inesperado! Verifique sua conexão.', err);
@@ -43,46 +43,52 @@ const UserStorage = ({ children }) => {
 
       if (response.ok) {
         window.localStorage.setItem('token', json.token);
-        setUser(json.user.nome);
+        setUser(json.user);
+        setMessage(json.message)
         setIsAuthorized(true);
         navigate('/');
+        alert(message)
       } else if (!response.ok) {
         setMessage(json.message)
         setIsAuthorized(false);
-        setErrorModal(true)
+        alert(message)
       }
     } catch (err) {
+      console.log(err)
       alert('Ocorreu um erro inesperado! Verifique sua conexão.', err);
     } finally {
       setLoading(false);
     }
   }
-  // async function verifyToken(token) {
-  //   const { url, options } = GET_TOKEN(token);
-  //   const response = await fetch(url, options);
-  //   const json = await response.json();
+  function logout(){
+    setUser(null)
+  }
+  async function verifyToken(token) {
+    const { url, options } = GET_TOKEN(token);
+    const response = await fetch(url, options);
+    const json = await response.json();
+    if (response.ok) {
+      setIsAuthorized(true);
+      const decode = jwtDecode(token)
+      setUser(decode)
+    } else {
+      setIsAuthorized(false);
+    }
+  }
 
-  //   console.log(json)
-  //   if (response.ok) {
-  //     setIsAuthorized(true);
-  //   } else {
-  //     setIsAuthorized(false);
-  //   }
-  // }
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+    verifyToken(token);
+  }, []);
 
-  // useEffect(() => {
-  //   const token = window.localStorage.getItem('token');
-  //   verifyToken(token);
-  // });
   return (
     <userContext.Provider
       value={{
         user,
         setUser,
-        errorModal,
         message,
-        setErrorModal,
         userLogin,
+        logout,
         userCreate,
         loading,
         isAuthorized,
