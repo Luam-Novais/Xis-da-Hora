@@ -62,6 +62,8 @@ const UserStorage = ({ children }) => {
   }
   function logout(){
     setUser(null)
+    window.localStorage.removeItem('token')
+    setIsAuthorized(false)
   }
   async function verifyToken(token) {
     const { url, options } = GET_TOKEN(token);
@@ -80,7 +82,7 @@ const UserStorage = ({ children }) => {
     const token = window.localStorage.getItem('token');
     verifyToken(token);
   }, []);
-
+console.log(user)
   return (
     <userContext.Provider
       value={{
