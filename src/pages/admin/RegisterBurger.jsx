@@ -5,7 +5,8 @@ import Loading from '../../components/common/Loading';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import styles from '../../styles/pages/admin/RegisterBurger.module.scss';
-import {urlProd} from '../../utilities/urls'
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import {urlProd, urlTest} from '../../utilities/urls'
 import useForm from '../../hooks/useForm';
 
 const RegisterBurger = () => {
@@ -33,6 +34,7 @@ const RegisterBurger = () => {
     }
 
     async function handleSubmit(event){
+      const token = window.localStorage.getItem('token')
         event.preventDefault()
         const formData = new FormData()
         if(
@@ -50,20 +52,25 @@ const RegisterBurger = () => {
 
             try{
                 setLoading(true)
-                const response = await fetch( urlProd +'hamburguers', {
+                const response = await fetch( urlProd + 'admin/functions', {
                     method: 'POST',
+                    headers:{
+                      'Authorization' : 'Bearer ' + token
+                    },
                     body: formData
                 })
                 const json = await response.json()
                 console.log(response, json)
                 if(response.ok){
-                    alert('Alimento cadastrado com sucesso!')
+                    alert('Cadastro concluído. O item foi adicionado ao cardápio.')
                     setMedia(null)
                     setIngredientes('')
                     setPreviewImg(null)
                     setCategoria(null)
                     nome.value === ''
                     valor.value === ''
+                }if(!response.ok){
+                  alert('Não foi possível concluir o cadastro. Verifique as informações e tente novamente.')
                 }
             }catch(err){
                 alert('Ocorreu um erro inesperado. Por favor verifique sua conexão!')
