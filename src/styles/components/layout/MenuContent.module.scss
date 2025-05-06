@@ -1,12 +1,12 @@
 @use '../../variables' as *;
 .container{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 20px 60px;
-    justify-items: center;
+    display:  flex;
+    flex-direction: column;
+    padding-block: 40px ;
+    justify-content: center;
     align-items: center;
-    gap: 30px;
     
+    gap: 30px;   
 }
 .containerError{
     width: 100%;
