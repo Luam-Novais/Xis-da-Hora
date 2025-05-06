@@ -1,114 +1,91 @@
-@use '../../variables' as * ;
+@use '../../variables' as *;
 .card{
     display: flex;
     padding: 20px;
-    flex-direction: column;
-    align-items: start;
     gap: 20px;
-    max-width: 300px;
+    width: 95%;
     background-color: $full-white;
+    box-shadow: $box-shadow;
     border-radius: 10px;
-    box-shadow: 
-    2px 2px 9px $gray, 
-    inset -2px -4px 9px $full-white, 
-    inset -2px -2px 9px $gray;
-    color: $text-color;
-
+  
     img{
-        width: 100%;
-        border-radius: 5px;
-        height: 200px;
-        object-fit: cover;
-        object-position: center;
+        width: 50%;
     }
-    .content{
+   .content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    h2{
+        font-family: $primary-font;
+        font-weight: 400;
+        color: $text-color;
+    }
+    p{
+        font-family: $secondary-font;
+        color: $text-color;
+    }
+    .buttonsContainer{
         display: flex;
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        h2{
-            font-family: $primary-font;
-            letter-spacing: 1.5px;
-        }
-        p{
-            font-family: $secondary-font;
-        }
-        .buttonsContainer{
+        gap: 50px;
+        
+        .quantityContainer{
             display: flex;
-            gap: 10px;
-            .quantityContainer{
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                border: 2px solid $text-color;
-                max-width: fit-content;
-                border-radius: 15px;
-                box-shadow: $box-shadow;
-                button{
-                    background-color: transparent;
-                    border: none;
-                    padding: 10px;
-                    svg{
-                        fill: $text-color;
-                    }
-                }
-                p{
-                    font-family: $highlight-font;
-                    font-size: 1.5rem;
-                }
-            }
-            .addButton{
-                display: flex;
-                justify-content: space-around;
-                gap: 10px;
-                padding: 10px 20px;
-                align-items: center;
-                max-width: fit-content;
-                background: $green-gradient;
-                color: $text-color;
-                font-family: $highlight-font;
-                font-size: 1.375rem;
-                border-radius: 5px;
+            justify-content: space-between;
+            gap: 30px;
+            align-items: center;
+            border: 2px solid $text-color;
+            border-radius: 20px;
+            box-shadow: $box-shadow;
+            button{
+                background: transparent;
+                padding: 15px;
                 border: none;
-                box-shadow: $box-shadow;
+                svg{
+                    fill: $text-color;
+                }
             }
+        }
+        .addButton{
+            background: $green-gradient;
+            padding-inline: 30px;
+            padding-block: 15px;
+            color: $text-color;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.25rem;
+            box-shadow: $box-shadow;
         }
     }
+   }
 }
 @media($tablet){
     .card{
-        min-width: 90%;
-        max-width: none;
-        img{
-            height: 300px;
+        .content{
+            .buttonsContainer{
+                gap: 30px;
+                .quantityContainer{
+                    gap: 10px;
+                }
+                .addButton{
+                    font-size: 1rem;
+                }
+            }
         }
     }
 }
 @media($mobile){
     .card{
-        img{
-            height: 200px;
-        }
-        .content{
+        flex-direction: column;
+         .content{
             .buttonsContainer{
                 flex-direction: column;
-                gap: 20px;
-                .quantityContainer,
-                .addButton{
-                    min-width: 100%;
-                    width: 100%;
-                }
+                gap: 30px;
                 .quantityContainer{
-                    justify-content: space-around;
-                    button{
-                        font-size: 1.5rem;
-                        padding: 15px;
-                    }
+                    gap: 10px;
+                    font-size: 1.375rem;
                 }
                 .addButton{
-                    justify-content: center;
-                    gap: 20px;
-                    padding: 15px;
+                    font-size: 1.375rem;
                 }
             }
         }
