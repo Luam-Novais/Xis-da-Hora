@@ -3,9 +3,9 @@ import styles from '../../styles/pages/user/Cardapio.module.scss'
 import { NavLink, Outlet, useParams } from 'react-router-dom'
 import MenuContent from '../../components/layout/MenuContent'
 
+
 const Cardapio = () => {
   const {id} = useParams()
-  
   return (
     <section className={styles.container}>
       <nav className={styles.navbar}>
