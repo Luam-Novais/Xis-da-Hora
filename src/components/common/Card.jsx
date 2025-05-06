@@ -1,9 +1,10 @@
-import React, { useReducer } from 'react'
+import React, { useContext, useReducer, useState } from 'react'
 import {IoBagHandle} from "react-icons/io5";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import styles from '../../styles/components/common/Card.module.scss'
 import { urlProd } from '../../utilities/urls';
 import LazyImage from './LazyImage';
+import { cartContext } from '../../context/CartContext';
 
 function changeQuantity(quantity, action){
     switch(action){
@@ -22,14 +23,23 @@ function changeQuantity(quantity, action){
         }
     }
 }
-const Card = ({src, nome, valor, ingredientes}) => {
+const Card = ({id, src, nome, valor, ingredientes}) => {
+    const {addToCart} = useContext(cartContext)
     const [quantity, dispatch] = useReducer(changeQuantity, 0)
     const price = valor.toString().replace('.', ',')
+    const item = {
+        id,
+        nome,
+        valor,
+        ingredientes,
+        quantity,
+        src: `${urlProd}uploads/${src}`
+    }
 
   return (
     <div className={styles.card}>
         <LazyImage src={`${urlProd}uploads/${src}`}/>
-        <div className={styles.content}>
+        <div className={styles.content} id={id}>
             <h2>{nome}</h2>
             <p>{ingredientes}</p>
             <p><b>R$ {price}</b></p>
@@ -37,10 +47,10 @@ const Card = ({src, nome, valor, ingredientes}) => {
             <div className={styles.buttonsContainer}>
                 <span className={styles.quantityContainer}>
                     <button onClick={()=> dispatch('decrement')}><FaMinus/></button>
-                    <p>{quantity}</p>
+                    <p><b>{quantity}</b></p>
                     <button onClick={()=> dispatch('increment')}><FaPlus/></button>
                 </span>
-                <button className={styles.addButton}>adicionar <i><IoBagHandle/></i></button>
+                <button className={styles.addButton} onClick={()=> addToCart(item)}>adicionar <i><IoBagHandle/></i></button>
             </div>
 
         </div>
