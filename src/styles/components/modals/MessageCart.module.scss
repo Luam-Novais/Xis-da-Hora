@@ -1,0 +1,49 @@
+@use '../../variables' as *;
+.container{
+    font-family: $primary-font;
+    color: $text-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: $full-white;
+    border-radius: 5px;
+    padding: 10px 30px;
+    box-shadow: $box-shadow;
+    width: fit-content;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    border: 1.5px solid $gray; 
+    animation: appear forwards .4s ease-in-out;
+    z-index: 999;
+}
+.sucess{
+    svg{
+        fill: green;
+    }
+}
+.error{
+    svg{
+        fill: red;
+    }
+}
+
+@media($tablet){
+    .container{
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: fit-content;
+    }
+}
+@keyframes appear {
+    from{
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
