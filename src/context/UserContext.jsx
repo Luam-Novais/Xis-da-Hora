@@ -47,11 +47,11 @@ const UserStorage = ({ children }) => {
         setMessage(json.message)
         setIsAuthorized(true);
         navigate('/');
-        alert(message)
+        alert('Conta criada com sucesso! Seja bem-vindo(a) à nossa lanchonete 🍔')
       } else if (!response.ok) {
         setMessage(json.message)
         setIsAuthorized(false);
-        alert(message)
+        alert(`${json.message}`)
       }
     } catch (err) {
       console.log(err)
@@ -82,7 +82,6 @@ const UserStorage = ({ children }) => {
     const token = window.localStorage.getItem('token');
     verifyToken(token);
   }, []);
-console.log(user)
   return (
     <userContext.Provider
       value={{

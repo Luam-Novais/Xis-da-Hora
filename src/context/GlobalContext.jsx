@@ -1,10 +1,13 @@
 import React from 'react'
 import UserStorage from './UserContext'
+import CartStorage from './CartContext'
 
 const GlobalContext = ({children}) => {
   return (
     <UserStorage>
-      {children}
+      <CartStorage>
+        {children}
+      </CartStorage>
     </UserStorage>
   )
 }
