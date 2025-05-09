@@ -4,7 +4,7 @@ import MessageCart from '../modals/MessageCart';
 import Card from '../common/Card';
 import Loading from '../common/Loading';
 import { useParams } from 'react-router-dom';
-import { urlProd, urlTest } from '../../utilities/urls';
+import { urlProd } from '../../utilities/urls';
 import useFetch from '../../hooks/useFetch';
 import { FaGear } from 'react-icons/fa6';
 

@@ -5,7 +5,7 @@ import { IoHome, IoFastFood, IoBagHandle, IoPerson, IoLogIn } from 'react-icons/
 import useMedia from '../../hooks/useMedia';
 import { userContext } from '../../context/UserContext';
 import { cartContext } from '../../context/CartContext';
-import { SiPanasonic } from 'react-icons/si';
+
 
 const Header = () => {
   const { id } = useParams();
@@ -18,6 +18,9 @@ const Header = () => {
   if (user) {
     firstName = user.nome.split(' ')[0];
   }
+  const pedidos = carrinho.reduce((acc, element)=>{
+    return acc += element.quantity
+  }, 0)
 
   return (
     <header className={!mobile ? styles.header : styles.headerMobile}>
@@ -58,7 +61,7 @@ const Header = () => {
                 </i>
               )}
             </NavLink>
-            {carrinho.length > 0 && <span className={styles.iconLength}>{carrinho.length}</span>}
+            {carrinho.length > 0 && <span className={styles.iconLength}>{pedidos}</span>}
           </li>
           <li>
             <NavLink className={({ isActive }) => (isActive ? `${styles.active}` : '')} to="minhaConta">
