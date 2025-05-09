@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../../styles/components/common/PasswordInput.module.scss';
-import { LuEye, LuEyeClosed } from 'react-icons/lu';
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const PasswordInput = ({ label, name, id, className, onBlur, ...props }) => {
   const [showPass, setShowPass] = useState(false);
@@ -20,7 +20,7 @@ const PasswordInput = ({ label, name, id, className, onBlur, ...props }) => {
           onBlur={onBlur}
           autoComplete='current-password'/>
         <button type="button" onClick={handleShowPass}>
-          <i>{showPass ? <LuEye /> : <LuEyeClosed />}</i>
+          <i>{showPass ? <IoEye /> : <IoEyeOff />}</i>
         </button>
       </span>
       <p className={styles.error}>{props.error && props.error}</p>
