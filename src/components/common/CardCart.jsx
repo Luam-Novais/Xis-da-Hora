@@ -1,20 +1,63 @@
-import React from 'react'
-import LazyImage from './LazyImage'
-import { urlProd } from '../../utilities/urls'
-import styles from '../../styles/components/common/CardCart.module.scss'
+import React, { useContext, useReducer } from 'react';
+import { FaMinus, FaPlus, FaTrashCan } from 'react-icons/fa6';
+import {cartContext} from '../../context/CartContext'
+import { urlProd } from '../../utilities/urls';
+import styles from '../../styles/components/common/CardCart.module.scss';
 
-const CardCart = ({nome, valor, ingredientes, quantity, src}) => {
-
-  return (
-    <div className={styles.card}>
-      <div className={styles.content}>
-        <h2>{nome}</h2>
-        <p>{ingredientes}</p>
-        <p>Quantidade: <b>{quantity}</b></p>
-        <p><b>R${valor}</b></p>
-      </div>
-    </div>
-  )
+function changeQuantity(finalQuantity, action) {
+  switch (action) {
+    case 'increment': {
+      return finalQuantity + 1;
+    }
+    case 'decrement': {
+      return finalQuantity > 1 ? finalQuantity - 1 : (finalQuantity = 1);
+    }
+  }
 }
 
-export default CardCart
+const CardCart = ({ id, nome, valor, quantity, src }) => {
+  const [finalQuantity, dispatch] = useReducer(changeQuantity, quantity);
+  const {removeItem} = useContext(cartContext)
+  
+ 
+  return (
+    <div className={styles.card} id={id}>
+      <div className={styles.container}>
+        <span className={styles.content}>
+          <img src={`${urlProd}uploads/${src}`} alt={nome} />
+          <span>
+            <h2>{nome}</h2>
+            <p>
+              <b>R${valor}</b>
+            </p>
+          </span>
+        </span>
+        <span className={styles.containerButtons}>
+          <span className={styles.quantityContainer}>
+            <button onClick={() => dispatch('decrement')}>
+              <i>
+                <FaMinus />
+              </i>
+            </button>
+            <p>
+              Quantidade: <b>{finalQuantity}</b>
+            </p>
+            <button onClick={() => dispatch('increment')}>
+              <i>
+                <FaPlus />
+              </i>
+            </button>
+          </span>
+          <button className={styles.deleteBtn} onClick={()=> removeItem(id)}>
+            <i>
+              <FaTrashCan />
+            </i>
+          </button>
+        </span>
+        <p></p>
+      </div>
+    </div>
+  );
+};
+
+export default CardCart;
