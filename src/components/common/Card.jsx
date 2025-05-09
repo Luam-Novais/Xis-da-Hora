@@ -30,13 +30,13 @@ const Card = ({id, src, nome, valor, ingredientes}) => {
     const item = {
         id,
         nome,
-        valor,
+        unityValor: valor,
+        valor: valor * quantity,
         ingredientes,
         quantity,
         dispatch,
         src
     }
-    console.log(quantity)
   return (
     <div className={styles.card}>
         <LazyImage src={`${urlProd}uploads/${src}`}/>
