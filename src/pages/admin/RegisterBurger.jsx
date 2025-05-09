@@ -90,7 +90,7 @@ const RegisterBurger = () => {
   return (
     <section className={styles.container}>
       <form action="" onSubmit={handleSubmit}>
-      <Title>Registrar Hamburger</Title>
+      <Title>Registrar Produto</Title>
         <label htmlFor="imagem" className={styles.fileUpload}>
           Selecionar Imagem <IoMdCloudUpload />
           <input type="file" id="imagem" name="imagem"  onChange={handleMedia}/>
