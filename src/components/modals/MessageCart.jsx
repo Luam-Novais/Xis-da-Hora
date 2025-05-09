@@ -7,9 +7,6 @@ import { cartContext } from '../../context/CartContext';
 const MessageCart = () => {
   const { status } = useContext(cartContext);
 
-  useEffect(() => {
-    console.log(status);
-  }, [status]);
   if (status.visible) {
     return (
       <div 
