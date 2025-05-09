@@ -1,9 +1,9 @@
 @use '../../variables' as *;
 .container{
     font-family: $primary-font;
-    color: $text-color;
+    color: $full-white;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 20px;
     background-color: $full-white;
@@ -20,21 +20,22 @@
 }
 .sucess{
     svg{
-        fill: green;
+        fill: $full-white;
     }
 }
 .error{
     svg{
-        fill: red;
+        fill: $full-white;
     }
 }
 
-@media($tablet){
+@media($mobile){
     .container{
         top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 10px;
         height: fit-content;
+        width:90% ;
+        font-size: 14px;
     }
 }
 @keyframes appear {

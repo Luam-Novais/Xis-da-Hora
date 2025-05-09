@@ -14,7 +14,7 @@ const MessageCart = () => {
     return (
       <div 
       className={`${styles.container}`} 
-      style={{borderColor: status.state ? 'green': 'red'}}>
+      style={{backgroundColor: status.state ? 'green': 'red'}}>
         {status.message}
         <i className={status.state ? styles.sucess : styles.error}>{status.state ? <FaCheck /> : <FaTimes />}</i>
       </div>
