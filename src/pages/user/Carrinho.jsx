@@ -9,6 +9,10 @@ import { cartContext } from '../../context/CartContext';
 const Carrinho = () => {
   const {carrinho} = useContext(cartContext)
 
+  const subTotal = carrinho.reduce((acc, element)=>{
+    return acc += element.valor
+  },0)
+
   if (carrinho && carrinho.length === 0) {
     return (
       <div className={styles.emptyCart}>
@@ -26,8 +30,10 @@ const Carrinho = () => {
             return <CardCart key={item.id} id={item.id} quantity={item.quantity} nome={item.nome} valor={item.valor} src={item.src} ingredientes={item.ingredientes} />;
           })}
         </div>
-
-        <Button>Finalizar Pedido</Button>
+        <div className={styles.finalContent}>
+          <p>Subtotal: <b>R${subTotal}</b></p>
+          <Button>Finalizar Pedido</Button>
+        </div>
       </div>
     );
   }
