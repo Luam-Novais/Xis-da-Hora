@@ -10,10 +10,10 @@ const Cardapio = () => {
     <section className={styles.container}>
       <nav className={styles.navbar}>
         <ul>
-          <li><NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='/cardapio/burgers'>hamburguer</NavLink></li>
-          <li><NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='/cardapio/porcoes'>porções</NavLink></li>
-          <li><NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='/cardapio/bebidas'>bebidas</NavLink></li>
-          <li><NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='/cardapio/sobremesas'>sobremesas</NavLink></li>
+          <li><NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='/cardapio/burgers'>HAMBURGUERS</NavLink></li>
+          <li><NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='/cardapio/porcoes'>PORÇÕES</NavLink></li>
+          <li><NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='/cardapio/bebidas'>BEBIDAS</NavLink></li>
+          <li><NavLink className={({isActive}) => isActive ? `${styles.active}` : ''} to='/cardapio/sobremesas'>SOBREMESAS</NavLink></li>
         </ul>
       </nav> 
       <MenuContent/>
