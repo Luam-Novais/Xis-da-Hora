@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useCallback, useEffect, useState } from 'react'
 export const cartContext = createContext()
 
 const CartStorage = ({children}) => {
@@ -10,7 +10,6 @@ const CartStorage = ({children}) => {
     }
     return []
   })
-  console.log(status)
 
   const addToCart = (item)=>{
     if(item && item.quantity > 0){
@@ -20,6 +19,12 @@ const CartStorage = ({children}) => {
       setStatus({visible: true, state: false, message: 'Adicione a quantidade desejada.'})
     }
   }
+  
+  const removeItem = useCallback((id)=>{
+      const newCarrinho = carrinho.filter((item) => item.id !== id)
+      setCarrinho([...newCarrinho])
+  },[carrinho])
+
   if(status.visible){
     setTimeout(()=>{
       setStatus({ visible: false, state:null, message: ""})
@@ -29,7 +34,7 @@ const CartStorage = ({children}) => {
     localStorage.setItem('carrinho', JSON.stringify(carrinho))
   }, [carrinho])
   return (
-     <cartContext.Provider value={{addToCart, carrinho, status}}>
+     <cartContext.Provider value={{addToCart, carrinho, status, removeItem}}>
       {children}
      </cartContext.Provider>
   )
