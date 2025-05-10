@@ -30,8 +30,7 @@ const Card = ({id, src, nome, valor, ingredientes}) => {
     const item = {
         id,
         nome,
-        unityValor: valor,
-        valor: valor * quantity,
+        valor,
         ingredientes,
         quantity,
         dispatch,

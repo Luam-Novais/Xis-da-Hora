@@ -24,7 +24,7 @@ const Carrinho = () => {
   if (carrinho) {
     return (
       <div className={styles.container}>
-        <div >
+        <div>
           <Title>Itens do pedido</Title>
           {carrinho.map((item) => {
             return <CardCart key={item.id} id={item.id} quantity={item.quantity} nome={item.nome} valor={item.valor} src={item.src} ingredientes={item.ingredientes} />;

@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { FaMinus, FaPlus, FaTrashCan } from 'react-icons/fa6';
 import {cartContext} from '../../context/CartContext'
 import { urlProd } from '../../utilities/urls';
@@ -17,8 +17,12 @@ function changeQuantity(finalQuantity, action) {
 
 const CardCart = ({ id, nome, valor, quantity, src }) => {
   const [finalQuantity, dispatch] = useReducer(changeQuantity, quantity);
+  const [finalValor, setFinalValor] = useState(valor)
   const {removeItem} = useContext(cartContext)
   
+  useEffect(()=>{
+    setFinalValor(valor * finalQuantity)
+  },[finalQuantity])
  
   return (
     <div className={styles.card} id={id}>
@@ -28,7 +32,7 @@ const CardCart = ({ id, nome, valor, quantity, src }) => {
           <span>
             <h2>{nome}</h2>
             <p>
-              <b>R${valor}</b>
+              <b>R${finalValor}</b>
             </p>
           </span>
         </span>
