@@ -17,13 +17,17 @@ function changeQuantity(finalQuantity, action) {
 
 const CardCart = ({ id, nome, valor, quantity, src }) => {
   const [finalQuantity, dispatch] = useReducer(changeQuantity, quantity);
-  const [finalValor, setFinalValor] = useState(valor)
-  const {removeItem} = useContext(cartContext)
+  const {carrinho, setCarrinho, removeItem} = useContext(cartContext)
   
   useEffect(()=>{
-    setFinalValor(valor * finalQuantity)
-  },[finalQuantity])
- 
+      const newCarrinho = carrinho.map((element) => {
+          if (element.id === id) {
+            return { ...element, quantity: finalQuantity };
+          }
+          return element;
+        });
+        setCarrinho([...newCarrinho]);
+  }, [finalQuantity])
   return (
     <div className={styles.card} id={id}>
       <div className={styles.container}>
@@ -32,7 +36,7 @@ const CardCart = ({ id, nome, valor, quantity, src }) => {
           <span>
             <h2>{nome}</h2>
             <p>
-              <b>R${finalValor}</b>
+              <b>R${valor}</b>
             </p>
           </span>
         </span>

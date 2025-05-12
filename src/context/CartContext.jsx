@@ -46,7 +46,7 @@ const CartStorage = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
   }, [carrinho]);
-  return <cartContext.Provider value={{ addToCart, carrinho, status, removeItem }}>{children}</cartContext.Provider>;
+  return <cartContext.Provider value={{ addToCart, carrinho, setCarrinho, status, removeItem }}>{children}</cartContext.Provider>;
 };
 
 export default CartStorage;
