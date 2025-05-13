@@ -1,0 +1,75 @@
+@use '../../variables' as *;
+.container{
+    padding: 40px 60px;
+    width: 100%;
+    color: $text-color;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h1{
+            font-family: $primary-font;
+            font-size: 3rem;
+            font-weight: 400;
+        }
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            box-shadow: $box-shadow;
+            border-radius: 5px;
+            border: 1px solid $gray;
+            font-size: 1.375rem;
+            background-color: $red-color;
+            color: $full-white;
+        }
+    }
+    .actions{
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            border: 1px solid $gray;
+            box-shadow: $box-shadow;
+            border-radius: 5px;
+            font-size: 1.125rem;
+            color: $text-color;
+            font-family: $secondary-font;
+            background-color: $full-white;
+        }
+    }
+    .content{
+        display: flex;
+            flex-direction: column;
+            gap: 20px;
+        span{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            h2{
+                font-family: $primary-font;
+                font-weight: 400;
+            }
+            p{
+                font-family: $secondary-font;
+            }
+        }
+    }
+}
+@media($mobile){
+   .container{
+        padding: 20px;
+        .head{
+            h1{
+                font-size: 2.3rem;
+            }
+        }
+   }
+}
