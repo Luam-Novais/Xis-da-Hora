@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import styles from '../../styles/components/layout/MenuContent.module.scss';
-import MessageCart from '../modals/MessageCart';
+import Messages from '../modals/Messages';
 import Card from '../common/Card';
 import Loading from '../common/Loading';
 import { useParams } from 'react-router-dom';
 import { urlProd } from '../../utilities/urls';
 import useFetch from '../../hooks/useFetch';
 import { FaGear } from 'react-icons/fa6';
-
+import {cartContext} from '../../context/CartContext'
+ 
 const MenuContent = () => {
   const { id } = useParams();
+  const {status} = useContext(cartContext)
   const { data, request, loading, error } = useFetch();
   useEffect(() => {
     request(urlProd + 'cardapio/' + id);
@@ -43,7 +45,7 @@ const MenuContent = () => {
     return (
       <>
         <div className={styles.container}>
-          <MessageCart />
+          <Messages status={status}/>
           {data.map((hamburger) => {
             return <Card key={hamburger.id} id={hamburger.id} src={hamburger.imagem} nome={hamburger.nome} ingredientes={hamburger.ingredientes} valor={hamburger.valor} />;
           })}

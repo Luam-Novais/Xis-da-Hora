@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext} from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import { FaTimes } from 'react-icons/fa';
-import styles from '../../styles/components/modals/MessageCart.module.scss'
-import { cartContext } from '../../context/CartContext';
+import styles from '../../styles/components/modals/Messages.module.scss'
 
-const MessageCart = () => {
-  const { status } = useContext(cartContext);
+
+const Messages = ({status}) => {
 
   if (status.visible) {
     return (
@@ -19,4 +18,4 @@ const MessageCart = () => {
   }
 };
 
-export default MessageCart;
+export default Messages;

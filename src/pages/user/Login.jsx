@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styles from '../../styles/pages/user/Login.module.scss'
 import { Link } from 'react-router-dom';
+import Messages from '../../components/modals/Messages'
 import Input from '../../components/common/Input';
 import PasswordInput from '../../components/common/PasswordInput';
 import Button from '../../components/common/Button';
@@ -10,7 +11,7 @@ import Loading from '../../components/common/Loading'
 import Title from '../../components/common/Title';
 
 const Login = () => {
-  const { userLogin, loading } = useContext(userContext)
+  const { userLogin, loading, status } = useContext(userContext)
   const email = useForm('email');
   const senha = useForm('senha');
   
@@ -31,6 +32,7 @@ const Login = () => {
   }
   return (
     <>
+    <Messages status={status}/>
       <form className={styles.form} onSubmit={handleSubmit}>
           <img className={`${styles.logo} full-width`}src="/logo.svg" alt=""/>
           <Title>Entrar</Title>

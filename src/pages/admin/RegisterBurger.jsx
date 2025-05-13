@@ -5,12 +5,13 @@ import Loading from '../../components/common/Loading';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import styles from '../../styles/pages/admin/RegisterBurger.module.scss';
-import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import Messages from '../../components/modals/Messages';
 import {urlProd, urlTest} from '../../utilities/urls'
 import useForm from '../../hooks/useForm';
 
 const RegisterBurger = () => {
     const [loading, setLoading] = useState(false)
+    const [status, setStatus] = useState({visible:false, state: null, message: ''})
     const nome = useForm('nome')
     const valor = useForm('valor')
     const [categoria, setCategoria] = useState('')
@@ -62,7 +63,7 @@ const RegisterBurger = () => {
                 const json = await response.json()
                 console.log(response, json)
                 if(response.ok){
-                    alert('Cadastro concluído. O item foi adicionado ao cardápio.')
+                    setStatus({visible:true, state:true, message:'Produto adicionado com sucesso ao cardápio!'})
                     setMedia(null)
                     setIngredientes('')
                     setPreviewImg(null)
@@ -70,7 +71,7 @@ const RegisterBurger = () => {
                     nome.value === ''
                     valor.value === ''
                 }if(!response.ok){
-                  alert('Não foi possível concluir o cadastro. Verifique as informações e tente novamente.')
+                  setStatus({visible:true, state:true, message:'Não foi possível concluir o cadastro. Verifique as informações e tente novamente.'})
                 }
             }catch(err){
                 alert('Ocorreu um erro inesperado. Por favor verifique sua conexão!')
@@ -84,11 +85,17 @@ const RegisterBurger = () => {
         }
     }
 
+    if(status.visible){
+      setTimeout(()=>{
+        setStatus({visible:false, state: null, message: ''})
+      }, 3000)
+    }
     if(loading){
          return <Loading/>
     }
   return (
     <section className={styles.container}>
+      <Messages status={status}/>
       <form action="" onSubmit={handleSubmit}>
       <Title>Registrar Produto</Title>
         <label htmlFor="imagem" className={styles.fileUpload}>

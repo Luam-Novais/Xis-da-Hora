@@ -7,6 +7,7 @@ export const userContext = createContext();
 const UserStorage = ({ children }) => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState('')
+  const [status, setStatus] = useState({ visible: false, state: null, message: '' });
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -23,10 +24,11 @@ const UserStorage = ({ children }) => {
         setUser(json.user);
         setIsAuthorized(true);
         navigate('/');
+        setStatus({visible: true, state: true, message: 'Login feito com sucesso!'})
       }else if(!response.ok){
         setMessage(json.message)
         setIsAuthorized(false);
-        alert(message)
+        setStatus({visible: true, state: false, message: 'Usuário ou senha inválidos.'})
       }
     } catch (err) {
       alert('Ocorreu um erro inesperado! Verifique sua conexão.', err);
@@ -47,11 +49,11 @@ const UserStorage = ({ children }) => {
         setMessage(json.message)
         setIsAuthorized(true);
         navigate('/');
-        alert('Conta criada com sucesso! Seja bem-vindo(a) à nossa lanchonete 🍔')
+        setStatus({ visible: true, state: true, message: 'Conta criada com sucesso! Seja bem-vindo(a) à nossa lanchonete 🍔'})
       } else if (!response.ok) {
         setMessage(json.message)
         setIsAuthorized(false);
-        alert(`${json.message}`)
+        setStatus({ visible: true, state: false, message: `${json.message}`})
       }
     } catch (err) {
       console.log(err)
@@ -64,6 +66,7 @@ const UserStorage = ({ children }) => {
     setUser(null)
     window.localStorage.removeItem('token')
     setIsAuthorized(false)
+    
   }
   async function verifyToken(token) {
     const { url, options } = GET_TOKEN(token);
@@ -76,6 +79,12 @@ const UserStorage = ({ children }) => {
     } else {
       setIsAuthorized(false);
     }
+  }
+
+   if (status.visible) {
+    setTimeout(() => {
+      setStatus({ visible: false, state: null, message: '' });
+    }, 3000);
   }
 
   useEffect(() => {
@@ -93,6 +102,7 @@ const UserStorage = ({ children }) => {
         userCreate,
         loading,
         isAuthorized,
+        status
       }}
     >
       {children}

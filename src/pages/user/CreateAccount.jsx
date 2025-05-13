@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import Messages from '../../components/modals/Messages';
 import Input from '../../components/common/Input';
 import PasswordInput from '../../components/common/PasswordInput';
 import Button from '../../components/common/Button';
@@ -10,7 +11,7 @@ import { userContext } from '../../context/UserContext';
 import Loading from '../../components/common/Loading';
 
 const CreateAccount = () => {
-  const {userCreate, loading} = useContext(userContext)
+  const {userCreate, loading, status} = useContext(userContext)
   const nome = useForm('nome');
   const telefone = useForm('telefone');
   const email = useForm('email');
@@ -51,6 +52,7 @@ const CreateAccount = () => {
   }
   return (
     <>
+    <Messages status={status}/>
       <form onSubmit={handleSubmit} className={styles.form}>
         <img src="/logo.svg" alt="" className={`${styles.logo} full-width`} />
         <Title >Criar Conta</Title>

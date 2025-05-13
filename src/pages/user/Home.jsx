@@ -13,7 +13,7 @@ const Home = () => {
   },[])
 
   const news = useMemo(()=> data ? data.slice(-2) : [], [data])
-  console.log(news)
+
   return (
     <div className={styles.container}>
       <span className={styles.hero}></span>
