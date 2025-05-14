@@ -6,7 +6,7 @@ const LazyImage = ({ src }) => {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className={styles.container} style={{filter : !loaded ? 'blur(20px)' : 'none'}}> 
+    <div className={styles.container} style={{filter : !loaded ? 'blur(5px)' : 'none'}}> 
       {!loaded && (
         <span className={styles.skeleton} style={{display: loaded ? 'none' : 'block'}}>
         </span>

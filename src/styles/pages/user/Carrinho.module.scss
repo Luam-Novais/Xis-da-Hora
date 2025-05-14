@@ -3,7 +3,53 @@
     padding: 20px 60px;
     display: grid;
     gap: 20px;
-    .finalContent{
+    
+    a{
+        text-decoration: none;
+        max-width: fit-content;
+        background: $gradient;
+        justify-self: start;
+        padding: 10px 50px;
+        border: none;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: 0px 3px 9px $gray;
+        color: #fff;
+        font-size: 1rem;
+        transition: all .4s ease-in;
+        font-family: $primary-font;
+        font-size: 1.25rem;
+        &:hover{
+            transform: scale(1.03);
+        }
+    }
+  .finalContainer{
+    padding-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span{
+        h2{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: $primary-font;
+            font-weight: 500;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        p{
+            font-family: $secondary-font;
+            font-weight: 500;
+            font-size: 1.25rem;
+        }
+        .cidade{
+            font-size: 1.125rem;
+            color: $dark-gray;
+        }
+    }
+      .finalContent{
         display: flex;
         align-items: center;
         gap: 20px;
@@ -13,6 +59,7 @@
             font-size: 1.375rem;
         }
     }
+  }
 }
 .emptyCart{
     width: 100%;
@@ -31,17 +78,38 @@
         fill: $gray;
      }
 }
+@media($tablet){
+    .container{
+        .finalContainer{
+            display: grid;
+            gap: 50px;
+            align-items: start;
+            .finalContent{
+                justify-self: end ;
+            }
+        }
+    }
+}
 @media($mobile){
     .container{
         padding: 20px;
-        .finalContent{
-            gap: 10px;
-            justify-content: space-between;
-              button{
+        .finalContainer{
+            span{
+                h2{
+                    font-size: 1.5rem;
+                }
+                p{
+                    font-size: 1.125rem;
+                }
+            }
+            .finalContent{
+            gap: 20px;
+              a{
                 min-width: fit-content;
                 font-size: 1rem;
                 padding: 10px 20px;
             }
+        }
         }
     }
 }

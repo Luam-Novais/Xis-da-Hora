@@ -5,6 +5,7 @@ import styles from '../../styles/components/common/Card.module.scss'
 import { urlProd } from '../../utilities/urls';
 import LazyImage from './LazyImage';
 import { cartContext } from '../../context/CartContext';
+import { userContext } from '../../context/UserContext';
 
 function changeQuantity(quantity, action){
     switch(action){
@@ -25,6 +26,7 @@ function changeQuantity(quantity, action){
 }
 const Card = ({id, src, nome, valor, ingredientes}) => {
     const {addToCart} = useContext(cartContext)
+    const {user} = useContext(userContext)
     const [quantity, dispatch] = useReducer(changeQuantity, 0)
     const price = valor.toString().replace('.', ',')
     const item = {
@@ -35,6 +37,13 @@ const Card = ({id, src, nome, valor, ingredientes}) => {
         quantity,
         dispatch,
         src
+    }
+    function verifyToAddCart(item){
+        if(user){
+            addToCart(item)
+        }else{
+            alert('Para adicionar um item ao carrinho, efetue login primeiro.')
+        }
     }
   return (
     <div className={styles.card}>
@@ -50,7 +59,7 @@ const Card = ({id, src, nome, valor, ingredientes}) => {
                     <p><b>{quantity}</b></p>
                     <button onClick={()=> dispatch('increment')}><FaPlus/></button>
                 </span>
-                <button className={styles.addButton} onClick={()=> addToCart(item)}>adicionar <i><IoBagHandle/></i></button>
+                <button className={styles.addButton} onClick={()=> verifyToAddCart(item)}>adicionar <i><IoBagHandle/></i></button>
             </div>
 
         </div>

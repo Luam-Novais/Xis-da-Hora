@@ -1,8 +1,10 @@
 @use '../../variables' as *;
 .container{
+    position: relative;
     width: 200px;
-    transition: all .2s ease-in-out;
+    transition: filter .4s ease-in-out;
     .skeleton{
+        position: absolute;
         width: 100%;
         height: 200px;
         display: flex;
