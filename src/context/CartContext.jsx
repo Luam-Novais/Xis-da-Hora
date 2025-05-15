@@ -13,7 +13,7 @@ const CartStorage = ({ children }) => {
 
   const addToCart = (item) => {
     if (item && item.quantity > 0) {
-      if(carrinho.some((element) => element.id === item.id)) {
+      if(carrinho.some((element) => element.nome === item.nome)) {
         const newCarrinho = carrinho.map((element)=>{
           if(element.id === item.id){
             return {...element, quantity: element.quantity + item.quantity}
@@ -31,8 +31,8 @@ const CartStorage = ({ children }) => {
   };
 
   const removeItem = useCallback(
-    (id) => {
-      const newCarrinho = carrinho.filter((item) => item.id !== id);
+    (nome) => {
+      const newCarrinho = carrinho.filter((item) => item.nome !== nome);
       setCarrinho([...newCarrinho]);
     },
     [carrinho],
