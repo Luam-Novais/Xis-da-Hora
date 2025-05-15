@@ -4,7 +4,8 @@
     display: grid;
     gap: 20px;
     
-    a{
+    .finishOrder{
+        cursor: pointer;
         text-decoration: none;
         max-width: fit-content;
         background: $gradient;

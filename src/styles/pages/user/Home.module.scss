@@ -1,7 +1,7 @@
 @use '../../variables' as *;
 .container{
     .hero{
-        background: url('/burger-home.jpg');
+        background: url('/burger-home.webp');
         background-position: center;
         background-size: cover;
         position: absolute;
@@ -54,7 +54,7 @@
                 }
                 .valor{
                     font-size: 1.5rem;
-                    color: $yellow-color;
+                    color: $dark-yellow-color;
                 }
                 .addButton{
                     display: flex;
