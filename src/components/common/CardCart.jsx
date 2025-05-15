@@ -56,7 +56,7 @@ const CardCart = ({ id, nome, valor, quantity, src }) => {
               </i>
             </button>
           </span>
-          <button className={styles.deleteBtn} onClick={()=> removeItem(id)}>
+          <button className={styles.deleteBtn} onClick={()=> removeItem(nome)}>
             <i>
               <FaTrashCan />
             </i>
