@@ -3,17 +3,16 @@ import CardCart from '../../components/common/CardCart';
 import { MdRemoveShoppingCart } from 'react-icons/md';
 import { FaMotorcycle } from 'react-icons/fa';
 import Title from '../../components/common/Title';
-import Button from '../../components/common/Button';
 import styles from '../../styles/pages/user/Carrinho.module.scss';
 import { cartContext } from '../../context/CartContext';
 import { userContext } from '../../context/UserContext';
-import { href } from 'react-router-dom';
+import FimPedidoModal from '../../components/modals/FimPedidoModal';
 
 const Carrinho = () => {
   const { carrinho, setCarrinho } = useContext(cartContext);
   const [subTotal, setSubTotal] = useState(0);
-  const [message, setMessage] = useState(0);
-  const linkRef = useRef(null)
+  const [whatsUrl, setWhatsUrl] = useState('');
+  const [modal, setModal] = useState(false)
   const { user } = useContext(userContext);
 
   useEffect(() => {
@@ -26,32 +25,20 @@ const Carrinho = () => {
     setSubTotal(total);
   }, [carrinho]);
 
-  function finalizeOrder(e) {
-    if(carrinho.length > 0 && user){
-      const items = carrinho.reduce((acc, element) => {
-      const message = `
-        ${element.quantity}x ${element.nome} (R$${element.valor})un  *R$${element.valor * element.quantity}*\n
-      `;
-      return (acc += message);
-    }, '');
+  function finalizeOrder() {
+    if (carrinho.length > 0 && user) {
+      const items = carrinho
+        .map((item) => {
+          return ` •${item.quantity}x ${item.nome} (R$${item.valor}un) - *R$${item.valor * item.quantity}*`;
+        })
+        .join('\n');
 
-    const message = `
-       Olá, gostaria de fazer um pedido! \n
-       Nome: ${user.nome}\n
-       Endereço de entrega : \n
-       ${user.endereco} | ${user.cidade}
-       Itens do o pedido: \n
-       ${items}\n\n
-       Total: *R$${subTotal}*\n
+      const message = `*Olá, gostaria de fazer um pedido!*\n\n` + `*Nome:* ${user.nome}\n` + `*Endereço de entrega:* ${user.endereco} | ${user.cidade}\n\n\n` + `*Itens do pedido:* \n` + `${items}\n\n` + `*Total: R$${subTotal}*\n\n` + `______\n\n` + `💰🏍️ *O PAGAMENTO SERÁ EFETUADO AO MOTOBOY NO ATO DA ENTREGA* 🏍️💰`;
       
-
-       *O PAGAMENTO SERÁ EFETUADO AO MOTOBOY NO ATO DA ENTREGA*
-    `;
-
-    setMessage(message)
-    linkRef.current.setAttribute('href', `https://wa.me/5524998763577?text=${message}`)
-    }else{
-      alert('Efetue o login para terminar a compra.')
+      setWhatsUrl(`https://wa.me/5524998763577?text=${encodeURIComponent(message)}`)
+      setModal(false)
+    } else {
+      alert('Efetue o login para terminar a compra.');
     }
   }
 
@@ -66,6 +53,7 @@ const Carrinho = () => {
   if (carrinho) {
     return (
       <div className={styles.container}>
+        {modal && <FimPedidoModal href={whatsUrl} subTotal={subTotal} onClick={finalizeOrder} setModal={setModal}/>} 
         <div>
           <Title>Itens do pedido</Title>
           {carrinho.map((item) => {
@@ -88,9 +76,9 @@ const Carrinho = () => {
             <p>
               Subtotal: <b>R${subTotal}</b>
             </p>
-            <a ref={linkRef} target='blank' onClick={finalizeOrder}>
+            <button className={styles.finishOrder}onClick={()=> setModal(true)}>
               Finalizar Pedido
-            </a>
+            </button>
           </span>
         </div>
       </div>
