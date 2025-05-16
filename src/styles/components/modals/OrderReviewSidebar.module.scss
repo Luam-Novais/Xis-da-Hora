@@ -1,0 +1,166 @@
+@use '../../variables' as *;
+.container{
+    position: absolute;
+    right: 0px;
+    top: 20px;
+    display: grid;
+    gap: 20px;
+    align-content: space-around ;
+    background-color: $light-gray;
+    height: 95vh;
+    z-index: 999;
+    width: 40%;
+    padding: 40px 20px;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: -2px 2px 9px $dark-gray, inset -8px 8px 9px $full-white;
+    transition: all .4s ease-in-out;
+    color: $text-color;
+    border: 1.5px solid $dark-gray;
+    overflow-y: scroll;
+    h1{
+        font-family: $primary-font;
+        font-weight: 500;
+        font-size: 2rem;
+    }
+    .items{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        h2{
+            font-family: $primary-font;
+            font-weight: 400;
+        }
+        Li{
+            position: relative;
+            font-family: $secondary-font;
+            padding-block: 10px;
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+
+            p{
+                b{
+                    color: $dark-yellow-color;
+                }
+            }
+            &:after{
+                content: '';
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                width: 100%;
+                height: 1px;
+                background-color: $gray;
+            }
+        }
+    }
+    .address{
+        h3{
+            font-family: $primary-font;
+            font-weight: 500;
+        }
+        p{
+            font-family: $secondary-font;
+            color: $black;
+        }
+    }
+    .finalContent{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        h3{
+            font-family: $primary-font;
+            font-weight: 500;
+        }
+        span{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 30px;
+                font-size: 1rem;
+                background-color: $white;
+                border: 1px solid $gray;
+                border-radius: 5px;
+                box-shadow: $box-shadow;
+            }
+            a{
+                cursor: pointer;
+                text-decoration: none;
+                max-width: fit-content;
+                background: $gradient;
+                justify-self: center;
+                padding: 10px 30px;
+                border: none;
+                height: auto;
+                border-radius: 5px;
+                box-shadow: 0px 3px 9px $gray;
+                color: #fff;
+                font-size: 1rem;
+                transition: all .4s ease-in;
+                font-family: $primary-font;
+                &:hover{
+                    transform: scale(1.03);
+                }
+            }
+        }
+    }
+}
+.openModal{
+    animation: openModal .6s ease forwards;
+}
+.closeModal{
+    animation: closeModal .6s ease forwards;
+    opacity: 0;
+    overflow-x: hidden;
+}
+
+@media($tablet){
+    .container{
+        width: 95%;
+        z-index: 99;
+    }
+    .openModal{
+        animation: openModalMobile .6s ease forwards;
+    }
+    .closeModal{
+        animation: lloseModalMobile .6s ease forwards;
+    }
+}
+@keyframes openModal {
+    from{
+        width: 0%;
+    }
+    to{
+        width: 40%;
+    }
+}
+@keyframes openModalMobile {
+    from{
+        width: 0%;
+    }
+    to{
+        width: 95%;
+    }
+}
+@keyframes closeModal {
+    from{
+        width: 40%;
+    }
+    to{
+        width: 0%;
+    }
+}
+@keyframes closeModalMobile {
+    from{
+        width: 95%;
+    }
+    to{
+        width: 0%;
+    }
+}
