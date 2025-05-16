@@ -29,6 +29,7 @@ const Card = ({id, src, nome, valor, ingredientes}) => {
     const {user} = useContext(userContext)
     const [quantity, dispatch] = useReducer(changeQuantity, 0)
     const price = valor.toString().replace('.', ',')
+    const url = `${urlProd}uploads/${src}`
     const item = {
         id,
         nome,
@@ -45,9 +46,10 @@ const Card = ({id, src, nome, valor, ingredientes}) => {
             alert('Para adicionar um item ao carrinho, efetue login primeiro.')
         }
     }
+    console.log(url)
   return (
     <div className={styles.card}>
-        <LazyImage src={`${urlProd}uploads/${src}`}/>
+        <LazyImage src={url}/>
         <div className={styles.content} id={id}>
             <h2>{nome}</h2>
             <p>{ingredientes}</p>
