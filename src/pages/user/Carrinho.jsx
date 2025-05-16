@@ -6,7 +6,7 @@ import Title from '../../components/common/Title';
 import styles from '../../styles/pages/user/Carrinho.module.scss';
 import { cartContext } from '../../context/CartContext';
 import { userContext } from '../../context/UserContext';
-import FimPedidoModal from '../../components/modals/FimPedidoModal';
+import OrderReviewSidebar from '../../components/modals/OrderReviewSidebar';
 
 const Carrinho = () => {
   const { carrinho, setCarrinho } = useContext(cartContext);
@@ -46,14 +46,14 @@ const Carrinho = () => {
     return (
       <div className={styles.emptyCart}>
         <p>Seu carrinho ainda está vazio.</p>
-        <MdRemoveShoppingCart />
+        <MdRemoveShoppingCart/>
       </div>
     );
   }
   if (carrinho) {
     return (
       <div className={styles.container}>
-        {modal && <FimPedidoModal href={whatsUrl} subTotal={subTotal} onClick={finalizeOrder} setModal={setModal}/>} 
+        <OrderReviewSidebar modal={modal} setModal={setModal} finalizeOrder={finalizeOrder}subTotal={subTotal} href={whatsUrl}/>
         <div>
           <Title>Itens do pedido</Title>
           {carrinho.map((item) => {

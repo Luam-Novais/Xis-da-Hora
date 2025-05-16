@@ -16,6 +16,7 @@ const MenuContent = () => {
   useEffect(() => {
     request(urlProd + 'cardapio/' + id);
   }, [id]);
+  console.log(data)
   if (loading) {
     return <Loading />;
   }
