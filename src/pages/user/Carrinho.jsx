@@ -53,7 +53,7 @@ const Carrinho = () => {
   if (carrinho) {
     return (
       <div className={styles.container}>
-        <OrderReviewSidebar modal={modal} setModal={setModal} finalizeOrder={finalizeOrder}subTotal={subTotal} href={whatsUrl}/>
+        {modal && <OrderReviewSidebar modal={modal} setModal={setModal} finalizeOrder={finalizeOrder}subTotal={subTotal} href={whatsUrl}/>}
         <div>
           <Title>Itens do pedido</Title>
           {carrinho.map((item) => {
