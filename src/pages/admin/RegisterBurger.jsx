@@ -6,101 +6,96 @@ import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import styles from '../../styles/pages/admin/RegisterBurger.module.scss';
 import Messages from '../../components/modals/Messages';
-import {urlProd, urlTest} from '../../utilities/urls'
+import { urlProd, urlTest } from '../../utilities/urls';
 import useForm from '../../hooks/useForm';
 
 const RegisterBurger = () => {
-    const [loading, setLoading] = useState(false)
-    const [status, setStatus] = useState({visible:false, state: null, message: ''})
-    const nome = useForm('nome')
-    const valor = useForm('valor')
-    const [categoria, setCategoria] = useState('')
-    const [media, setMedia] = useState(null)
-    const [ingredientes, setIngredientes] = useState('')
-    const [previewImg, setPreviewImg] = useState(null)
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ visible: false, state: null, message: '' });
+  const nome = useForm('nome');
+  const valor = useForm('valor');
+  const [categoria, setCategoria] = useState('');
+  const [media, setMedia] = useState(null);
+  const [ingredientes, setIngredientes] = useState('');
+  const [previewImg, setPreviewImg] = useState(null);
 
-    function handleIngredientes({target}){
-        setIngredientes(target.value)
-    }
-    function handleSelect({target}){
-        setCategoria(target.value)
-    }
+  function handleIngredientes({ target }) {
+    setIngredientes(target.value);
+  }
+  function handleSelect({ target }) {
+    setCategoria(target.value);
+  }
 
-    function handleMedia({target}){
-        const file = URL.createObjectURL(target.files[0])
-        if(file){
-            setPreviewImg(file)
+  function handleMedia({ target }) {
+    const file = URL.createObjectURL(target.files[0]);
+    if (file) {
+      setPreviewImg(file);
+    }
+    setMedia(target.files[0]);
+  }
+
+  async function handleSubmit(event) {
+    const token = window.localStorage.getItem('token');
+    event.preventDefault();
+    const formData = new FormData();
+    if (media && nome.value && ingredientes && categoria && valor.value) {
+      formData.append('imagem', media);
+      formData.append('nome', nome.value);
+      formData.append('categoria', categoria);
+      formData.append('valor', valor.value);
+      formData.append('ingredientes', ingredientes);
+
+      try {
+        setLoading(true);
+        const response = await fetch(urlProd + 'admin/functions', {
+          method: 'POST',
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+          body: formData,
+        });
+        const json = await response.json();
+        console.log(response, json);
+        if (response.ok) {
+          setStatus({ visible: true, state: true, message: 'Produto adicionado com sucesso ao cardápio!' });
+          setMedia(null);
+          setIngredientes('');
+          setPreviewImg(null);
+          setCategoria(null);
+          nome.value === '';
+          valor.value === '';
         }
-        setMedia(target.files[0])
-    }
-
-    async function handleSubmit(event){
-      const token = window.localStorage.getItem('token')
-        event.preventDefault()
-        const formData = new FormData()
-        if(
-            media &&
-            nome.value &&
-            ingredientes && 
-            categoria &&
-            valor.value 
-        ){
-            formData.append('imagem', media)
-            formData.append('nome', nome.value)
-            formData.append('categoria', categoria)
-            formData.append('valor', valor.value)
-            formData.append('ingredientes', ingredientes)
-
-            try{
-                setLoading(true)
-                const response = await fetch( urlProd + 'admin/functions', {
-                    method: 'POST',
-                    headers:{
-                      'Authorization' : 'Bearer ' + token
-                    },
-                    body: formData
-                })
-                const json = await response.json()
-                console.log(response, json)
-                if(response.ok){
-                    setStatus({visible:true, state:true, message:'Produto adicionado com sucesso ao cardápio!'})
-                    setMedia(null)
-                    setIngredientes('')
-                    setPreviewImg(null)
-                    setCategoria(null)
-                    nome.value === ''
-                    valor.value === ''
-                }if(!response.ok){
-                  setStatus({visible:true, state:true, message:'Não foi possível concluir o cadastro. Verifique as informações e tente novamente.'})
-                }
-            }catch(err){
-                alert('Ocorreu um erro inesperado. Por favor verifique sua conexão!')
-            }
-            finally{
-                setLoading(false)
-            }
+        if (!response.ok) {
+          console.log(response);
+          setStatus({ visible: true, state: true, message: 'Não foi possível concluir o cadastro. Verifique as informações e tente novamente.' });
         }
-        else{
-           alert('Por favor, preencha todos os dados.')
-        }
+      } catch (err) {
+        alert('Ocorreu um erro inesperado. Por favor verifique sua conexão!');
+      } finally {
+        setLoading(false);
+      }
+      console.log(response);
+    } else {
+      alert('Por favor, preencha todos os dados.');
     }
+  }
 
-    if(status.visible){
-      setTimeout(()=>{
-        setStatus({visible:false, state: null, message: ''})
-      }, 3000)
-    }
-    if(loading){
-         return <Loading/>
-    }
+  if (status.visible) {
+    setTimeout(() => {
+      setStatus({ visible: false, state: null, message: '' });
+    }, 3000);
+  }
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <section className={styles.container}>
-      <Messages status={status}/>
+      <Messages status={status} />
       <form action="" onSubmit={handleSubmit}>
-      <Title>Registrar Produto</Title>
+        <Title>Registrar Produto</Title>
         <label htmlFor="imagem" className={styles.fileUpload}>
           Selecionar Imagem <IoMdCloudUpload />
-          <input type="file" id="imagem" name="imagem"  onChange={handleMedia}/>
+          <input type="file" id="imagem" name="imagem" onChange={handleMedia} />
         </label>
         {previewImg ? (
           <picture className={styles.containerImg}>
@@ -119,11 +114,11 @@ const RegisterBurger = () => {
           <textarea id="ingredientes" name="ingredinetes" value={ingredientes} onChange={handleIngredientes} />
         </span>
         <select name="categoria" id="categoria" onChange={handleSelect}>
-            <option value="">Selecione uma categoria</option>
-            <option value="hamburguer">Hamburguer</option>
-            <option value="porcoes">Porções</option>
-            <option value="bebidas">Bebidas</option>
-            <option value="sobremesas">Sobremesas</option>
+          <option value="">Selecione uma categoria</option>
+          <option value="hamburguer">Hamburguer</option>
+          <option value="porcoes">Porções</option>
+          <option value="bebidas">Bebidas</option>
+          <option value="sobremesas">Sobremesas</option>
         </select>
         <Input type="number" name="valor" id="valor" label="Valor" {...valor} />
         <Button>Registrar</Button>

@@ -2,7 +2,7 @@ import React, { useContext, useReducer, useState } from 'react'
 import {IoBagHandle} from "react-icons/io5";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import styles from '../../styles/components/common/Card.module.scss'
-import { urlProd } from '../../utilities/urls';
+import { urlProd, urlTest } from '../../utilities/urls';
 import LazyImage from './LazyImage';
 import { cartContext } from '../../context/CartContext';
 import { userContext } from '../../context/UserContext';
@@ -46,7 +46,6 @@ const Card = ({id, src, nome, valor, ingredientes}) => {
             alert('Para adicionar um item ao carrinho, efetue login primeiro.')
         }
     }
-    console.log(url)
   return (
     <div className={styles.card}>
         <LazyImage src={url}/>

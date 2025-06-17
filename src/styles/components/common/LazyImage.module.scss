@@ -17,7 +17,8 @@
     img{
         min-width: 150px;
         width: 100%;
-        min-height: 200px;
+        height: auto;
+        max-height: 300px;
         object-fit: cover;
         object-position: center;
         border-radius: 5px;
@@ -26,5 +27,14 @@
 @media($tablet){
     .container{
         width: 100%;
+    }
+}
+@media($mobile){
+    .container{
+        img{
+            min-width: 100px;
+            min-height: 100px;
+            
+        }
     }
 }
