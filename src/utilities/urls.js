@@ -1,5 +1,5 @@
 export const urlTest = 'http://26.252.150.176:3001/'
-export const urlProd = 'https://backend-xis-da-hora.vercel.app/'
+export const urlProd = 'https://backendxisdahora.onrender.com/'
 
 
 //https://xisdahora.up.railway.app
